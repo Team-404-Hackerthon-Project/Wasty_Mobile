@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/components/custom_button.dart';
+import 'package:wasty/screens/registration_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -50,7 +51,7 @@ class SplashScreen extends StatelessWidget {
                   'Wasty is a waste management application. Here you\'ll be able to connect with your nearest vendors based on your location'),
           )),
           SizedBox(height: 30,),
-          Center(child: CustomButton(buttonName:'Get Started')),
+          Center(child: CustomButton(buttonName:'Get Started', object: RegistrationScreen(),)),
         ],
       ) ,
 

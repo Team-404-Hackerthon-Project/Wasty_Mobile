@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:wasty/components/custom_text_button.dart';
+import 'package:wasty/components/footer_button.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/components/custom_button.dart';
-
+import 'package:wasty/screens/forgot_password_screen.dart';
+import 'package:wasty/screens/registration_screen.dart';
+import 'package:wasty/components/custom_input_field.dart';
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+  SignInScreen({super.key});
+
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +27,9 @@ class SignInScreen extends StatelessWidget {
 
           Center(
             child: Text(
-              'Wasty',
+              'Welcome to Wasty again!',
               style: TextStyle(
-                fontSize: 35,
+                fontSize: 15,
               ),
             ),
           ),
@@ -30,27 +37,35 @@ class SignInScreen extends StatelessWidget {
           Center(
             child: Image(
               image: AssetImage(
-                  'assets/images/lady_next_to_phone.png'
+                  'assets/images/man_next_to_phone.png'
               ),
             ),
           ),
+          SizedBox(height: 20,),
+          Center(
+            child: CustomInputField(
+                hintText: 'Email address',
+                textEditingController: email,
+                validator: (value){},
+                keyboardType: TextInputType.text),
+          ),
 
           SizedBox(height: 20,),
+          Center(
+            child: CustomInputField(
+                hintText: 'Email address',
+                textEditingController: email,
+                validator: (value){},
+                keyboardType: TextInputType.text),
+          ),
 
-          Center(child: Text('Manage your waste effectively!')),
-
+          Center(child: CustomTextButton(buttonName: 'Forgot Password ?', object: ForgotPasswordScreen())),
           SizedBox(height: 20,),
+          Center(child: CustomButton(buttonName:'Get Started', object: RegistrationScreen(),)),
+          Center(
+            child: FooterButton(question: 'Dont have an account?', buttonText: 'Sign Up', object: RegistrationScreen()),
+          )
 
-          Center(child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 40),
-            child:
-            Text(
-                maxLines: 4,
-                textAlign: TextAlign.center,
-                'Wasty is a waste management application. Here you\'ll be able to connect with your nearest vendors based on your location'),
-          )),
-          SizedBox(height: 30,),
-          Center(child: CustomButton(buttonName:'Get Started')),
         ],
       ) ,
 
