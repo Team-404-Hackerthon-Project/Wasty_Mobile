@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/textfields_widgets.dart';
+import '../widgets/textfields_widgets.dart';
 
 class DashBord extends StatefulWidget {
   @override
