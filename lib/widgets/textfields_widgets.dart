@@ -1,63 +1,74 @@
-// import 'package:flutter/material.dart';
-
-// class FormTextField extends StatelessWidget {
-//   final String cardName;
-//   FormTextField(this.cardName, {super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Padding(
-//       padding: EdgeInsets.all(10.0),
-//       child: Card(
-//         child: Column(
-//           children: [
-//             Text('Name'),
-//             TextField(
-//               decoration: InputDecoration(
-//                 border: InputBorder.none,
-//                 hintText: 'Name',
-//                 contentPadding: EdgeInsets.all(10),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
 import 'package:flutter/material.dart';
 
-class FormTextField extends StatelessWidget {
+class MyTextField extends StatefulWidget {
+  final TextEditingController controller;
+  final String? Function(dynamic value)? validator;
+  final TextInputType keyboardType;
   final String cardName;
-  
+  final IconData? iconData;
 
-  FormTextField({required this.cardName});
+  const MyTextField({
+    Key? key,
+    required this.controller,
+    required this.cardName,
+    required this.keyboardType,
+    this.validator,
+    this.iconData,
+  }) : super(key: key);
 
   @override
+  _MyTextFieldState createState() => _MyTextFieldState();
+}
+
+class _MyTextFieldState extends State<MyTextField> {
+  @override
   Widget build(BuildContext context) {
-    return  Padding(
-      padding: const EdgeInsets.all(10.0),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(cardName,style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF000000),
-                  ),),
-          const Card(
-            child: TextField(
+          Text(widget.cardName),
+          Card(
+            color: Colors.white,
+            elevation: 3,
+            child: TextFormField(
+              scrollPadding: const EdgeInsets.all(5),
+              keyboardType: widget.keyboardType,
+              controller: widget.controller,
+              validator: widget.validator,
+              cursorColor: Colors.black,
               decoration: InputDecoration(
+                filled: true,
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF00BD15)),
+                ),
                 border: InputBorder.none,
-                contentPadding: EdgeInsets.all(10),
+                suffixIcon: widget.iconData != null
+                    ? IconButton(
+                        icon: Icon(widget.iconData, color: Color(0xFF00BD15)),
+                        onPressed: () => _selectDate(context),
+                      )
+                    : null,
               ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  void _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null) {
+      setState(() {
+        widget.controller.text = picked.toLocal().toString().split(' ')[0];
+      });
+    }
   }
 }

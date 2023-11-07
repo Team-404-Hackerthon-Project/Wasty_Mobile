@@ -18,11 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       useInheritedMediaQuery: true,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF00BD15)),
-        useMaterial3: true,
-      ),
+      
       home: DashBord(),
     );
   }
