@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-const Color? bodyColor = Color(0xFFFFFFFF);
+Color? bodyColor = Color(0xFFFFFFFF);
 Color buttonColor = Color(0xFF37B943);
 Color buttonTextColor = Color(0xFFFFFFFF);
 Color formFieldColor = Color(0xFFEEEEEE);

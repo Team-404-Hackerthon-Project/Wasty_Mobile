@@ -3,36 +3,35 @@ import 'package:wasty/constants.dart';
 
 class CustomButton extends StatelessWidget {
   final String buttonName;
+  final VoidCallback onPress;
 
-  const CustomButton({super.key,required this.buttonName});
+  const CustomButton({
+    Key? key, // Add the Key parameter here
+    required this.buttonName,
+    required this.onPress,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: buttonColor,
-          foregroundColor: buttonTextColor,
-          elevation: 0,
-          padding: EdgeInsetsDirectional.symmetric(horizontal: 130, vertical: 20),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(0.0),
-          ),
-          textStyle: TextStyle(
-            fontSize: 20,
-          )
-
-
+      style: ElevatedButton.styleFrom(
+        backgroundColor: buttonColor,
+        foregroundColor: buttonTextColor,
+        elevation: 0,
+        padding: const EdgeInsetsDirectional.symmetric(horizontal: 130, vertical: 20),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(0.0),
         ),
-        onPressed: (){},
-        child: Text(
-            buttonName,
+        textStyle: const TextStyle(
+          fontSize: 20,
         ),
-
+      ),
+      onPressed: () {
+        onPress(); // Call the onPress callback here
+      },
+      child: Text(
+        buttonName,
+      ),
     );
   }
-}
-
-
-void routeNavigator (String route, context , Widget object){
-  Navigator.push(context, MaterialPageRoute(builder: (context) => object));
 }

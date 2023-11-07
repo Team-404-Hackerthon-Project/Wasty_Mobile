@@ -9,16 +9,16 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bodyColor,
-      body: Column(
+      body:  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image(
+          const Image(
             image: AssetImage(
                 'assets/images/overlapping_circles.png'
             ),
           ),
 
-          Center(
+          const Center(
             child: Text(
                 'Wasty',
               style: TextStyle(
@@ -27,7 +27,7 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
 
-          Center(
+          const Center(
             child: Image(
                 image: AssetImage(
                   'assets/images/lady_next_to_phone.png'
@@ -35,22 +35,22 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
 
-          Center(child: Text('Manage your waste effectively!')),
+          const Center(child: Text('Manage your waste effectively!')),
 
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
 
-          Center(child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 40),
+          const Center(child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 80, vertical: 40),
             child:
               Text(
                 maxLines: 4,
                 textAlign: TextAlign.center,
                   'Wasty is a waste management application. Here you\'ll be able to connect with your nearest vendors based on your location'),
           )),
-          SizedBox(height: 30,),
-          Center(child: CustomButton(buttonName:'Get Started')),
+          const SizedBox(height: 30,),
+          Center(child: CustomButton(buttonName:'Get Started', onPress: () {  },)),
         ],
       ) ,
 

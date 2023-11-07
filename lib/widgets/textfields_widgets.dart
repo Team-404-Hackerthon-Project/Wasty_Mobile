@@ -37,8 +37,9 @@ class _MyTextFieldState extends State<MyTextField> {
               keyboardType: widget.keyboardType,
               controller: widget.controller,
               validator: widget.validator,
-              cursorColor: Colors.black,
+              cursorColor: const Color(0xFF00BD15),
               decoration: InputDecoration(
+                fillColor: Colors.white,
                 filled: true,
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Color(0xFF00BD15)),
@@ -46,7 +47,7 @@ class _MyTextFieldState extends State<MyTextField> {
                 border: InputBorder.none,
                 suffixIcon: widget.iconData != null
                     ? IconButton(
-                        icon: Icon(widget.iconData, color: Color(0xFF00BD15)),
+                        icon: Icon(widget.iconData, color: const Color(0xFF00BD15)),
                         onPressed: () => _selectDate(context),
                       )
                     : null,

@@ -50,7 +50,7 @@ class SignInScreen extends StatelessWidget {
                 'Wasty is a waste management application. Here you\'ll be able to connect with your nearest vendors based on your location'),
           )),
           SizedBox(height: 30,),
-          Center(child: CustomButton(buttonName:'Get Started')),
+          Center(child: CustomButton(buttonName:'Get Started', onPress: () {  },)),
         ],
       ) ,
 
