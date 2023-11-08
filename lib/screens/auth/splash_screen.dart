@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/components/custom_button.dart';
-import 'package:wasty/screens/auth/registration_screen.dart';
 
-import '../APIs/getxController.dart';
 import 'sign_in_screen.dart';
 
 class SplashScreen extends StatelessWidget {

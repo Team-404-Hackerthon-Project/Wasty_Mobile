@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../components/custom_button.dart';
 import '../constants.dart';
@@ -223,17 +222,7 @@ class _RequestPageState extends State<RequestPage> {
                         ],
                       ),
                     ),
-                    // MyTextField(
-                    //   controller: _bins,
-                    //   keyboardType: TextInputType.phone,
-                    //   validator: (value) {
-                    //     if (value == null || value.isEmpty) {
-                    //       return 'Please enter number of Bins';
-                    //     }
-                    //     return null;
-                    //   },
-                    //   cardName: 'Number of Bins',
-                    // ),
+                    
 
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -305,17 +294,19 @@ class _RequestPageState extends State<RequestPage> {
                     ),
                     CustomButton(
                       buttonName: 'NEXT',
-                      widget: SubmitInformation(),
-                       arguments: {
-                         'name': _nameController.text,
-                         'location': _location.text,
-                         'landMark': _landmark.text,
+                      widget: SubmitInformation(
+                        arguments:
+                        {
+                         'name': _nameController.text.toString(),
+                         'location': _location.text.toString(),
+                         'landMark': _landmark.text.toString(),
                          'date': _date.text.toString(),
                          'phone': _phone.text.toString(),
                          'selectedWasteType': selectedWasteType.toString(),
                          'selectednumberOfBins': selectednumberOfBins.toString(),
                          'selectedServiceOption': selectedServiceOption.toString()
                       },
+                      ), 
                       
                       
                     //   () {
