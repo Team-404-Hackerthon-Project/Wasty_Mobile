@@ -8,8 +8,9 @@ import 'package:wasty/screens/auth/registration_screen.dart';
 import 'forgot_password_screen.dart';
 import 'package:wasty/apis/wasty_api_client.dart';
 
-AuthAPI client = AuthAPI();
+//AuthAPI client = AuthAPI();
 
+DioClient client = DioClient();
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
@@ -75,7 +76,7 @@ class SignInScreen extends StatelessWidget {
               child: CustomButton(
                 buttonName:'Log In',
                 widget: RegistrationScreen(),
-                function: client.login(email.text, password.text),
+                function: client.postLogIn(email.text, password.text),
               )),
           Center(
             child: FooterButton(question: 'Dont have an account?', buttonText: 'Sign Up', object: RegistrationScreen()),

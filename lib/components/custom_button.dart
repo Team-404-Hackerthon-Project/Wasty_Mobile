@@ -8,9 +8,10 @@ class CustomButton extends StatelessWidget {
   final Map<String, String>? arguments;
   final bool condition;
   final Future<dynamic>? function;
+  final Function? block;
 
   const CustomButton(
-    {super.key,required this.buttonName,required this.widget, this.arguments,this.function,this.condition = true});
+    {super.key,required this.buttonName,required this.widget, this.arguments,this.function,this.block,this.condition = true});
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +35,8 @@ class CustomButton extends StatelessWidget {
         ),
         onPressed: () async{
           if (condition) {
-            print(arguments);
+            block;
             final result = await function;
-            print('reached heare');
-            print(result);
-            print('after result');
             routeNavigator(widget,arguments);
           }
           },
