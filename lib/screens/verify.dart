@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../components/custom_button.dart';
-import '../components/verification_details.dart';
+
 import '../constants.dart';
 
 class SubmitInformation extends StatelessWidget {
@@ -13,14 +13,17 @@ class SubmitInformation extends StatelessWidget {
     double size = MediaQuery.of(context).size.width;
     final requstArguments = Get.arguments;
 
-    final userName = requstArguments['name'] ?? 'Default Name';
-final location = requstArguments['location'] ?? 'Default Location';
-final landMark = requstArguments['landMark'] ?? 'Default Landmark';
-final date = requstArguments['date'] ?? 'Default Date';
-final phone = requstArguments['phone'] ?? 'Default Phone';
-final selectednumberOfBins = requstArguments['selectednumberOfBins'] ?? 'Default Bins';
-final selectedWasteType = requstArguments['selectedWasteType'] ?? 'Default Waste Type';
-final selectedServiceOption = requstArguments['selectedServiceOption'] ?? 'Default Service Option';
+    final userName = requstArguments['name'] ?? ' ';
+    final location = requstArguments['location'] ?? ' ';
+    final landMark = requstArguments['landMark'] ?? ' ';
+    final date = requstArguments['date'] ?? ' ';
+    final phone = requstArguments['phone'] ?? ' ';
+    final selectednumberOfBins =
+        requstArguments['selectednumberOfBins'] ?? ' ';
+    final selectedWasteType =
+        requstArguments['selectedWasteType'] ?? ' ';
+    final selectedServiceOption =
+        requstArguments['selectedServiceOption'] ?? ' ';
 
     return Scaffold(
         backgroundColor: bodyColor,
@@ -63,185 +66,230 @@ final selectedServiceOption = requstArguments['selectedServiceOption'] ?? 'Defau
                 ),
               ),
             ),
-             Padding(
+            Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                   Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('name:',
-                          style: TextStyle(
+                      const Text(
+                        'name:',
+                        style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF000000),
-                        ),),
-                      Text(userName, style: const TextStyle(
+                        ),
+                      ),
+                      Text(
+                        userName,
+                        style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF474A56),
-                        ),),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(height: size*0.05,),
-
-                   Row(
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Location:',
-                          style: TextStyle(
+                      const Text(
+                        'Location:',
+                        style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF000000),
-                        ),),
-                      Text(location, style: const TextStyle(
+                        ),
+                      ),
+                      Text(
+                        location,
+                        style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF474A56),
-                        ),),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(height: size*0.05,),
-
-                   Row(
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Landmark:',
-                          style: TextStyle(
+                      const Text(
+                        'Landmark:',
+                        style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF000000),
-                        ),),
-                      Text(landMark, style: const TextStyle(
+                        ),
+                      ),
+                      Text(
+                        landMark,
+                        style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF474A56),
-                        ),),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(height: size*0.05,),
-
-                   Row(
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Date:',
-                          style: TextStyle(
+                      const Text(
+                        'Date:',
+                        style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF000000),
-                        ),),
-                      Text(date, style: const TextStyle(
+                        ),
+                      ),
+                      Text(
+                        date,
+                        style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF474A56),
-                        ),),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(height: size*0.05,),
-
-                   Row(
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Telephone:',
-                          style: TextStyle(
+                      const Text(
+                        'Telephone:',
+                        style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF000000),
-                        ),),
-                      Text(phone, style: const TextStyle(
+                        ),
+                      ),
+                      Text(
+                        phone,
+                        style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF474A56),
-                        ),),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(height: size*0.05,),
-
-                   Row(
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Number of Bins:',
-                          style: TextStyle(
+                      const Text(
+                        'Number of Bins:',
+                        style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF000000),
-                        ),),
-                      Text(selectednumberOfBins, style: const TextStyle(
+                        ),
+                      ),
+                      Text(
+                        selectednumberOfBins,
+                        style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF474A56),
-                        ),),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(height: size*0.05,),
-
-                   Row(
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Service Option:',
-                          style: TextStyle(
+                      const Text(
+                        'Service Option:',
+                        style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF000000),
-                        ),),
-                      Text(selectedServiceOption.toString(), style: const TextStyle(
+                        ),
+                      ),
+                      Text(
+                        selectedServiceOption.toString(),
+                        style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF474A56),
-                        ),),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(height: size*0.05,),
-
-                   Row(
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Waste Type:',
-                          style: TextStyle(
+                      const Text(
+                        'Waste Type:',
+                        style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF000000),
-                        ),),
-                      Text(selectedWasteType.toString(), style: const TextStyle(
+                        ),
+                      ),
+                      Text(
+                        selectedWasteType.toString(),
+                        style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF474A56),
-                        ),),
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(height: size*0.05,),
-
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
                   CustomButton(
-                      buttonName: 'NEXT',
-                      onPress: () {
-                    //if (_formKey.currentState!.validate()) {
-
+                    buttonName: 'NEXT',
+                    onPress: () {
+                      //if (_formKey.currentState!.validate()) {
 
                       // Navigate to the next screen
                       Get.to(const SubmitInformation(),
-                      
                           duration: const Duration(seconds: 1),
                           transition: Transition.native);
-                    //}
-                      },
-                    ),
-                  
+                      //}
+                    },
+                  ),
                 ],
               ),
             )
