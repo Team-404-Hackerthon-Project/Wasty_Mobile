@@ -281,11 +281,10 @@ class _RequestPageState extends State<RequestPage> {
                                 );
                               }).toList(),
                               onChanged: (String? newValue) {
-                                // Handle dropdown value changes here
-
+                                
                                 selectedServiceOption = newValue;
                               },
-                              // Set an initial value if needed
+                              
                               value: selectedServiceOption,
                             ),
                           ),

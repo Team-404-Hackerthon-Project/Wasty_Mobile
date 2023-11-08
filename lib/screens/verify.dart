@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../components/custom_button.dart';
 import '../constants.dart';
@@ -11,14 +10,8 @@ class SubmitInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final requestArguments = Get.arguments;
-    double size = MediaQuery.of(context).size.width;
-
-    //  String getArgument(String key) {
-    //   return requestArguments[key] ?? ' ';
-    // }
     
-
+    double size = MediaQuery.of(context).size.width;
     Widget buildRow(String label, String value) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
