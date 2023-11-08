@@ -1,10 +1,9 @@
 class User {
-  String? name;
+  String? username;
   String? email;
   String? password;
   String? phoneNumber;
   String? location;
 
-  User({this.name, this.email,this.password,this.location,this.phoneNumber});
-
+  User({this.username, this.email,this.password,this.location,this.phoneNumber});
 }

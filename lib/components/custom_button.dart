@@ -6,10 +6,11 @@ class CustomButton extends StatelessWidget {
   final String buttonName;
   final Widget widget;
   final Map<String, String>? arguments;
+  final bool condition;
+  final Future<dynamic>? function;
 
   const CustomButton(
-    
-    {super.key,required this.buttonName,required this.widget, this.arguments});
+    {super.key,required this.buttonName,required this.widget, this.arguments,this.function,this.condition = true});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,16 @@ class CustomButton extends StatelessWidget {
 
 
         ),
-        onPressed: (){routeNavigator(widget,arguments);},
+        onPressed: () async{
+          if (condition) {
+            print(arguments);
+            final result = await function;
+            print('reached heare');
+            print(result);
+            print('after result');
+            routeNavigator(widget,arguments);
+          }
+          },
         child: Text(
             buttonName,
           maxLines: 1,
