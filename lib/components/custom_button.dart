@@ -37,7 +37,9 @@ class CustomButton extends StatelessWidget {
           if (condition) {
             block;
             final result = await function;
-            routeNavigator(widget,arguments);
+            if(result.isEmpty()) {
+              routeNavigator(widget,arguments);}
+
           }
           },
         child: Text(

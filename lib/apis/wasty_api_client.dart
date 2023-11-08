@@ -27,6 +27,8 @@ class DioClient {
 
   postLogIn(String email, String password) async {
     try {
+      print(email);
+      print(password);
       final response = await dio.post(
         'https://hackathon-waste-api.onrender.com/api/v1/auth/login',
         data: {'email': email, 'password': password, 'appType': 'app2'},
