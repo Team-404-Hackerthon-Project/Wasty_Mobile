@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../components/custom_button.dart';
 import '../constants.dart';
 import 'request.dart';
-import 'verify.dart';
+//import 'verify.dart';
 
 class LandingPage extends StatefulWidget {
   @override
@@ -54,12 +52,7 @@ class _DashBordState extends State<LandingPage> {
               SizedBox(height: size * 0.25),
               CustomButton(
                 buttonName: 'Request',
-                onPress: () {
-                  // Navigate to the next screen
-                  Get.to(const RequestPage(),
-                      duration: const Duration(seconds: 1),
-                      transition: Transition.native);
-                },
+                widget: RequestPage(),
               ),
             ],
           ),

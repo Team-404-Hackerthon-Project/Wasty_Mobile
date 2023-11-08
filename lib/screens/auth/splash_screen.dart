@@ -54,12 +54,7 @@ class SplashScreen extends StatelessWidget {
           Center(
               child: CustomButton(
             buttonName: 'Get Started',
-            onPress: () {
-                  // Navigate to the next screen
-                  Get.to(const SignInScreen(),
-                      duration: const Duration(seconds: 1),
-                      transition: Transition.native);
-                },
+            widget: SignInScreen() 
           )),
         ],
       ),

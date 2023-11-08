@@ -64,12 +64,7 @@ class ConfirmationPage extends StatelessWidget {
               ),
               CustomButton(
                 buttonName: '< Done',
-                onPress: () {
-                  // Navigate to the next screen
-                  Get.offAll(LandingPage(),
-                      duration: const Duration(seconds: 1),
-                      transition: Transition.rightToLeft);
-                },
+                widget: LandingPage(),
               ),
             ],
           )

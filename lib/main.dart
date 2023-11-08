@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00BD15)),
         //useMaterial3: true,
       ),
-      home:  SplashScreen(),
+      home:  const Checkpoint(),
 
       // routes: {
       //   '/splash': (context) => SplashScreen(),
@@ -46,14 +46,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class CheckingPoint extends StatefulWidget {
-  const CheckingPoint({super.key});
+class Checkpoint extends StatefulWidget {
+  const Checkpoint({super.key});
 
   @override
-  State<CheckingPoint> createState() => _CheckingPointState();
+  State<Checkpoint> createState() => _CheckpointState();
 }
 
-class _CheckingPointState extends State<CheckingPoint> {
+class _CheckpointState extends State<Checkpoint> {
   String? finalEmail;
 
   Future<void> isRegistered() async {
@@ -79,11 +79,11 @@ class _CheckingPointState extends State<CheckingPoint> {
         future: isRegistered(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return Center(child: const CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           return finalEmail == null
-              ? const RegistrationScreen()
-              :  SplashScreen();
+              ?  SplashScreen()
+              :  RegistrationScreen();
         },
       ),
     );

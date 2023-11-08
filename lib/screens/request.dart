@@ -305,13 +305,8 @@ class _RequestPageState extends State<RequestPage> {
                     ),
                     CustomButton(
                       buttonName: 'NEXT',
-                      onPress: () {
-                    if (_formKey.currentState!.validate()) {
-
-
-                      // Navigate to the next screen
-                      Get.to(const SubmitInformation(),
-                      arguments: {
+                      widget: SubmitInformation(),
+                       arguments: {
                          'name': _nameController.text,
                          'location': _location.text,
                          'landMark': _landmark.text,
@@ -321,10 +316,20 @@ class _RequestPageState extends State<RequestPage> {
                          'selectednumberOfBins': selectednumberOfBins.toString(),
                          'selectedServiceOption': selectedServiceOption.toString()
                       },
-                          duration: const Duration(seconds: 1),
-                          transition: Transition.native);
-                    }
-                      },
+                      
+                      
+                    //   () {
+                    // if (_formKey.currentState!.validate()) {
+
+
+                    //   // Navigate to the next screen
+                    //   Get.to(const SubmitInformation(),
+                   
+                      
+                    //       duration: const Duration(seconds: 1),
+                    //       transition: Transition.native);
+                    // }
+                    //   },
                     ),
                     SizedBox(
                       height: size * 0.03,

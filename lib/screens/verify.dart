@@ -279,12 +279,7 @@ class SubmitInformation extends StatelessWidget {
                   ),
                   CustomButton(
                     buttonName: 'NEXT',
-                    onPress: () {
-                      // Navigate to the next screen
-                      Get.to(const ConfirmationPage(),
-                          duration: const Duration(seconds: 1),
-                          transition: Transition.native);
-                    },
+                    widget: ConfirmationPage()
                   ),
                 ],
               ),

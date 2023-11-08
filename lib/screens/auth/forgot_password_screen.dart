@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:wasty/components/custom_input_field.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/components/custom_button.dart';
+import 'package:wasty/screens/splash_screen.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
-  const ForgotPasswordScreen({super.key});
+  ForgotPasswordScreen({super.key});
+
+  TextEditingController email = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,37 +24,52 @@ class ForgotPasswordScreen extends StatelessWidget {
 
           Center(
             child: Text(
-              'Wasty',
+              'Set new password',
               style: TextStyle(
-                fontSize: 35,
+                fontSize: 15,
               ),
             ),
           ),
-
+          SizedBox(height: 40,),
+          Center(
+            child: CustomInputField(
+                hintText: 'Email address',
+                textEditingController: email,
+                validator: (value){},
+                keyboardType: TextInputType.text),
+          ),
+          SizedBox(height: 20,),
+          Center(
+            child: CustomInputField(
+                hintText: 'Email address',
+                textEditingController: email,
+                validator: (value){},
+                keyboardType: TextInputType.text),
+          ),
+          SizedBox(height: 20,),
+          Center(
+            child: CustomInputField(
+                hintText: 'Email address',
+                textEditingController: email,
+                validator: (value){},
+                keyboardType: TextInputType.text),
+          ),
+          SizedBox(height: 20,),
           Center(
             child: Image(
               image: AssetImage(
-                  'assets/images/lady_next_to_phone.png'
+                  'assets/images/password.png'
               ),
             ),
           ),
+          SizedBox(height: 40,),
 
-          SizedBox(height: 20,),
-
-          Center(child: Text('Manage your waste effectively!')),
-
-          SizedBox(height: 20,),
-
-          Center(child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 40),
-            child:
-            Text(
-                maxLines: 4,
-                textAlign: TextAlign.center,
-                'Wasty is a waste management application. Here you\'ll be able to connect with your nearest vendors based on your location'),
-          )),
-          SizedBox(height: 30,),
-          Center(child: CustomButton(buttonName:'Get Started', onPress: () {  },)),
+          Center(
+            child: CustomButton(
+                buttonName: 'Done',
+                widget: SplashScreen()
+            ),
+          )
         ],
       ) ,
 
