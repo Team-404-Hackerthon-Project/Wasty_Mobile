@@ -6,12 +6,14 @@ import '../constants.dart';
 import '../widgets/textfields_widgets.dart';
 import 'verify.dart';
 
-class DashBord extends StatefulWidget {
+class RequestPage extends StatefulWidget {
+  const RequestPage({super.key});
+
   @override
-  State<DashBord> createState() => _DashBordState();
+  State<RequestPage> createState() => _RequestPageState();
 }
 
-class _DashBordState extends State<DashBord> {
+class _RequestPageState extends State<RequestPage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _location = TextEditingController();
@@ -27,6 +29,7 @@ class _DashBordState extends State<DashBord> {
     '3',
     '4',
     '5',
+    'more',
   ];
   String? selectednumberOfBins = ' ';
 
@@ -303,7 +306,7 @@ class _DashBordState extends State<DashBord> {
                     CustomButton(
                       buttonName: 'NEXT',
                       onPress: () {
-                    //if (_formKey.currentState!.validate()) {
+                    if (_formKey.currentState!.validate()) {
 
 
                       // Navigate to the next screen
@@ -320,7 +323,7 @@ class _DashBordState extends State<DashBord> {
                       },
                           duration: const Duration(seconds: 1),
                           transition: Transition.native);
-                    //}
+                    }
                       },
                     ),
                     SizedBox(

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../components/custom_button.dart';
 
 import '../constants.dart';
+import 'thanks.dart';
 
 class SubmitInformation extends StatelessWidget {
   const SubmitInformation({super.key});
@@ -18,10 +19,8 @@ class SubmitInformation extends StatelessWidget {
     final landMark = requstArguments['landMark'] ?? ' ';
     final date = requstArguments['date'] ?? ' ';
     final phone = requstArguments['phone'] ?? ' ';
-    final selectednumberOfBins =
-        requstArguments['selectednumberOfBins'] ?? ' ';
-    final selectedWasteType =
-        requstArguments['selectedWasteType'] ?? ' ';
+    final selectednumberOfBins = requstArguments['selectednumberOfBins'] ?? ' ';
+    final selectedWasteType = requstArguments['selectedWasteType'] ?? ' ';
     final selectedServiceOption =
         requstArguments['selectedServiceOption'] ?? ' ';
 
@@ -281,13 +280,10 @@ class SubmitInformation extends StatelessWidget {
                   CustomButton(
                     buttonName: 'NEXT',
                     onPress: () {
-                      //if (_formKey.currentState!.validate()) {
-
                       // Navigate to the next screen
-                      Get.to(const SubmitInformation(),
+                      Get.to(const ConfirmationPage(),
                           duration: const Duration(seconds: 1),
                           transition: Transition.native);
-                      //}
                     },
                   ),
                 ],
