@@ -27,9 +27,16 @@ class RegistrationScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 20,),
+            //SizedBox(height: size * 0.05),
 
-            const Center(child: Text('Welcome to Wasty!')),
+            const Center(child: Text('Welcome to Wasty!',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+                color: Color(0xFF474A56),
+              ),
+            )),
 
             const SizedBox(height: 10,),
 
@@ -39,7 +46,12 @@ class RegistrationScreen extends StatelessWidget {
               Text(
                   maxLines: 4,
                   textAlign: TextAlign.center,
-                  'How you manage your waste? If not then start from now'),
+                  'How you manage your waste? If not then start from now', style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF474A56),
+              ),),
             )),
             const SizedBox(height: 10,),
             Center(

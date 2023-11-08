@@ -15,59 +15,68 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double size = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: bodyColor,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image(
-            image: AssetImage(
-                'assets/images/overlapping_circles.png'
-            ),
-          ),
-
-          Center(
-            child: Text(
-              'Welcome to Wasty again!',
-              style: TextStyle(
-                fontSize: 15,
-              ),
-            ),
-          ),
-
-          Center(
-            child: Image(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Image(
               image: AssetImage(
-                  'assets/images/man_next_to_phone.png'
+                  'assets/images/overlapping_circles.png'
               ),
             ),
-          ),
-          SizedBox(height: 20,),
-          Center(
-            child: CustomInputField(
-                hintText: 'Email address',
-                textEditingController: email,
-                validator: (value){},
-                keyboardType: TextInputType.text),
-          ),
 
-          SizedBox(height: 20,),
-          Center(
-            child: CustomInputField(
-                hintText: 'Email address',
-                textEditingController: email,
-                validator: (value){},
-                keyboardType: TextInputType.text),
-          ),
+            const Center(
+              child: Text(
+                'Welcome to Wasty again!',
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF474A56),
+                ),
+              ),
+            ),
+            SizedBox(height: size * 0.05),
 
-          Center(child: CustomTextButton(buttonName: 'Forgot Password ?', widget: ForgotPasswordScreen(),)),
-          SizedBox(height: 20,),
-          Center(child: CustomButton(buttonName:'Get Started', widget: RegistrationScreen(),)),
-          Center(
-            child: FooterButton(question: 'Dont have an account?', buttonText: 'Sign Up', object: RegistrationScreen()),
-          )
+            const Center(
+              child: Image(
+                image: AssetImage(
+                    'assets/images/man_next_to_phone.png'
+                ),
+              ),
+            ),
+            SizedBox(height: size * 0.1),
+            Center(
+              child: CustomInputField(
+                  hintText: 'Email address',
+                  textEditingController: email,
+                  validator: (value){},
+                  keyboardType: TextInputType.text),
+            ),
 
-        ],
+            SizedBox(height: size * 0.03),
+            Center(
+              child: CustomInputField(
+                  hintText: 'Email address',
+                  textEditingController: email,
+                  validator: (value){},
+                  keyboardType: TextInputType.text),
+            ),
+
+            Center(child: CustomTextButton(buttonName: 'Forgot Password ?', widget: ForgotPasswordScreen(),)),
+            SizedBox(height: size * 0.05),
+            Center(child: CustomButton(buttonName:'Get Started', widget: RegistrationScreen(),)),
+            SizedBox(height: size * 0.01),
+            Center(
+              child: FooterButton(question: 'Dont have an account?', buttonText: 'Sign Up', object: RegistrationScreen()),
+            ),
+            SizedBox(height: size * 0.01),
+
+          ],
+        ),
       ) ,
 
     );

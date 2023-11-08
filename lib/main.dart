@@ -8,10 +8,10 @@ import 'screens/auth/splash_screen.dart';
 
 
 void main() => runApp(
-  // DevicePreview(
-  //   builder: (context) =>  MyApp(), // Wrap your app
-  // ),
-   MyApp()
+  DevicePreview(
+    builder: (context) =>  MyApp(), // Wrap your app
+  ),
+  // MyApp()
 );
 
 class MyApp extends StatelessWidget {

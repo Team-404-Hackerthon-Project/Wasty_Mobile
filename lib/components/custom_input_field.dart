@@ -22,6 +22,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(left: 10,right: 10),
           width: 380,
           decoration: BoxDecoration(
             boxShadow: [

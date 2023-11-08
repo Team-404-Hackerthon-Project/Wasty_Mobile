@@ -6,11 +6,13 @@ class MyTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final String cardName;
   final IconData? iconData;
+  final String hint;
 
   const MyTextField({
     Key? key,
     required this.controller,
     required this.cardName,
+    required this.hint,
     required this.keyboardType,
     this.validator,
     this.iconData,
@@ -39,6 +41,7 @@ class _MyTextFieldState extends State<MyTextField> {
               validator: widget.validator,
               cursorColor: const Color(0xFF00BD15),
               decoration: InputDecoration(
+                hintText: widget.hint,
                 fillColor: Colors.white,
                 filled: true,
                 focusedBorder: const OutlineInputBorder(
