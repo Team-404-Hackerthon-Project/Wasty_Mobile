@@ -6,12 +6,14 @@ class CustomButton extends StatelessWidget {
   final String buttonName;
   final Widget widget;
   final Map<String, String>? arguments;
-  final bool condition;
+  final bool validationCondition;
+  final bool disableStraightRouting;
   final Future<dynamic>? function;
   final Function? block;
 
+
   const CustomButton(
-    {super.key,required this.buttonName,required this.widget, this.arguments,this.function,this.block,this.condition = true});
+    {super.key,required this.buttonName,required this.widget, this.arguments,this.function,this.block,this.validationCondition = true, this.disableStraightRouting = false});
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +36,23 @@ class CustomButton extends StatelessWidget {
 
         ),
         onPressed: () async{
-          if (condition) {
-            block;
+          if (validationCondition) {
             final result = await function;
-            if(result.isEmpty()) {
-              routeNavigator(widget,arguments);}
+            if(disableStraightRouting){
+              if(result.isEmpty()!) {
+                routeNavigator(widget,arguments);}
+            }
+            else{
+              routeNavigator(widget, arguments);
+            }
+            //block;
+
+
 
           }
           },
-        child: Text(
+
+      child: Text(
             buttonName,
           maxLines: 1,
         ),
