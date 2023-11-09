@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wasty/components/progress_indicator.dart';
 
 
 import '../components/verifyBTN.dart';
@@ -172,9 +173,12 @@ class SubmitInformation extends StatelessWidget {
                   SizedBox(
                     height: size * 0.05,
                   ),
-                  VerifyBTN(btn: 'Next', onTap: () {
-
+                  VerifyBTN(btn: 'Next', onTap: () async{
+                    progressIndicatorBuilder(context);
                     performWasteRequest();
+                    Navigator.pop(context);
+                    Get.to(ConfirmationPage(),
+                        duration: const Duration(seconds: 1),transition: Transition.native);
 
 
 

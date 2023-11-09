@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasty/components/custom_text_button.dart';
 import 'package:wasty/components/footer_button.dart';
+import 'package:wasty/components/progress_indicator.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/components/custom_button.dart';
 import 'package:wasty/components/custom_input_field.dart';
@@ -143,10 +144,12 @@ class SignInScreen extends StatelessWidget {
               VerifyBTN(btn: 'Log in', onTap: () async {
 
                 if (_formKey.currentState!.validate()){
+                  progressIndicatorBuilder(context);
                   performLoginRequest();
                   final SharedPreferences prefs = await SharedPreferences.getInstance();
                   final result = await client.postLogIn(email.text,password.text);
                   prefs.setString('accesstoken', result);
+                  Navigator.pop(context);
                   Get.to(RegistrationScreen(),
                       duration: const Duration(seconds: 1),transition: Transition.native);
                 }

@@ -3,7 +3,7 @@ import 'package:wasty/components/custom_input_field.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/components/custom_button.dart';
 import 'package:wasty/screens/auth/splash_screen.dart';
-import 'package:wasty/screens/splash_screen.dart';
+import 'package:wasty/screens/auth/splash_screen.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({super.key});

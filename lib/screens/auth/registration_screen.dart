@@ -9,7 +9,7 @@ import 'package:wasty/screens/landingPage.dart';
 import 'package:wasty/apis/wasty_api_client.dart';
 import '../../components/verifyBTN.dart';
 import 'sign_in_screen.dart';
-
+import 'package:wasty/components/progress_indicator.dart';
 
 DioClient client = DioClient();
 
@@ -152,7 +152,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   VerifyBTN(btn: 'Register', onTap: () async{
 
                     if (_formKey.currentState!.validate()){
+                      progressIndicatorBuilder(context);
                       final result = await client.postRegistration(name.text,email.text,password.text);
+                      Navigator.pop(context);
                       Get.to(LandingPage(),
                           duration: const Duration(seconds: 1),transition: Transition.native);
                     }
