@@ -136,7 +136,7 @@ class _RequestPageState extends State<RequestPage> {
                         color: Color(0xFF474A56),
                       ),
                     ),
-                    MyTextField(
+                    RequestTextField(
                       controller: _nameController,
                       keyboardType: TextInputType.name,
                       validator: (value) {
@@ -148,7 +148,7 @@ class _RequestPageState extends State<RequestPage> {
                       },
                       cardName: 'Name', hint: 'Please enter your name',
                     ),
-                    MyTextField(
+                    RequestTextField(
                       controller: _location,
                       keyboardType: TextInputType.text,
                       validator: (value) {
@@ -160,7 +160,7 @@ class _RequestPageState extends State<RequestPage> {
                       },
                       cardName: 'Location', hint: 'Enter location',
                     ),
-                    MyTextField(
+                    RequestTextField(
                       controller: _landmark,
                       keyboardType: TextInputType.text,
                       validator: (value) {
@@ -172,7 +172,7 @@ class _RequestPageState extends State<RequestPage> {
                       },
                       cardName: 'Landmark', hint: 'Please enter your landmark',
                     ),
-                    MyTextField(
+                    RequestTextField(
                       controller: _date,
                       keyboardType: TextInputType.text,
                       iconData: Icons.calendar_today,
@@ -185,7 +185,7 @@ class _RequestPageState extends State<RequestPage> {
                       },
                       cardName: 'Date', hint: 'Please select a date',
                     ),
-                    MyTextField(
+                    RequestTextField(
                       controller: _phone,
                       keyboardType: TextInputType.phone,
                       validator: (value) {

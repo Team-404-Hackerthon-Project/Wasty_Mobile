@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:wasty/components/custom_input_field.dart';
 import 'package:wasty/components/footer_button.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/components/custom_button.dart';
 import 'package:wasty/screens/landingPage.dart';
 import 'package:wasty/apis/wasty_api_client.dart';
+import '../../components/verifyBTN.dart';
 import 'sign_in_screen.dart';
 
 
@@ -94,7 +97,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 child: CustomInputField(
                     hintText: 'Email address',
                     textEditingController: email,
-                    validator: (value){},
+                    validator: (value){
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email address';
+                      }
+
+                      return null;
+                    },
                     keyboardType: TextInputType.text),
               ),
               const SizedBox(height: 20,),
@@ -102,7 +111,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 child: CustomInputField(
                     hintText: 'Password',
                     textEditingController: password,
-                    validator: (value){},
+                    validator: (value){
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your Password';
+                      }
+
+                      return null;
+                    },
                     keyboardType: TextInputType.text),
               ),
               const SizedBox(height: 20,),
@@ -110,7 +125,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 child: CustomInputField(
                     hintText: 'Confirm password',
                     textEditingController: confirmPassword,
-                    validator: (value){},
+                    validator: (value){
+                      if (value == null || value.isEmpty || value != password) {
+                        return 'password do not match';
+                      }
+
+                      return null;
+                    },
                     keyboardType: TextInputType.text),
               ),
               const SizedBox(height: 20,),
@@ -118,17 +139,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               SizedBox(height: 40,),
               Center(
                   child:
-                  CustomButton(
-                      buttonName:'Register',
-                      widget:LandingPage(),
-                      function: client.postRegistration(name.text, email.text, password.text)  ,
-                      arguments: {
-                        "username": name.text,
-                        "email": email.text,
-                        "password": password.text,
-                      },
+                  // CustomButton(
+                  //     buttonName:'Register',
+                  //     widget:LandingPage(),
+                  //     function: client.postRegistration(name.text, email.text, password.text)  ,
+                  //     arguments: {
+                  //       "username": name.text,
+                  //       "email": email.text,
+                  //       "password": password.text,
+                  //     },
+                  //
+                  // )
+                  VerifyBTN(btn: 'Log in', onTap: () {
 
-                  )
+                    if (_formKey.currentState!.validate()){
+
+                      Get.to(LandingPage(),
+                          duration: const Duration(seconds: 1),transition: Transition.native);
+                    }
+                  },),
               ),
               FooterButton(
                   question: 'Already have an account?',

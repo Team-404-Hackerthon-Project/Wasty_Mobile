@@ -4,7 +4,7 @@ class VerifyBTN extends StatelessWidget {
   final String btn;
   final VoidCallback onTap;
 
-  VerifyBTN({super.key, required this.btn, required this.onTap});
+  VerifyBTN({super.key, required this.btn, required this.onTap,});
 
   @override
   Widget build(BuildContext context) {
