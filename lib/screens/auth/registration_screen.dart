@@ -146,49 +146,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               const SizedBox(height: 20,),
 
               SizedBox(height: 40,),
+              Center(
+                  child:
 
-//<<<<<<< HEAD
-                  // CustomButton(
-                  //     buttonName:'Register',
-                  //     widget:LandingPage(),
-                  //     function: client.postRegistration(name.text, email.text, password.text)  ,
-                  //     arguments: {
-                  //       "username": name.text,
-                  //       "email": email.text,
-                  //       "password": password.text,
-                  //     },
-                  //
-                  // )
-                 // VerifyBTN(btn: 'Log in', onTap: () {
-//=======
-//                   CustomButton(
-//                       buttonName:'Register',
-//                       disableStraightRouting: true,
-//                       widget:LandingPage(),
-//                       function: client.postRegistration(name.text, email.text, password.text)  ,
-//                       arguments: {
-//                         "username": name.text,
-//                         "email": email.text,
-//                         "password": password.text,
-//                       },
-// //>>>>>>> 698cdc9574f9a10c64bec438d35539592ead330f
-//
-//                   //   if (_formKey.currentState!.validate()){
-//                   //
-//                   //     Get.to(LandingPage(),
-//                   //         duration: const Duration(seconds: 1),transition: Transition.native);
-//                   //   }
-//                   // }
-//                   )
+                  VerifyBTN(btn: 'Register', onTap: () async{
 
-              VerifyBTN(btn: 'Register', onTap: (){
-                if (_formKey.currentState!.validate()){
-                  Get.to(LandingPage(),
-                      duration: const Duration(seconds: 1),transition: Transition.native);
-                }
-
-              }),
-
+                    if (_formKey.currentState!.validate()){
+                      final result = await client.postRegistration(name.text,email.text,password.text);
+                      Get.to(LandingPage(),
+                          duration: const Duration(seconds: 1),transition: Transition.native);
+                    }
+                  },),
+              ),
               FooterButton(
                   question: 'Already have an account?',
                   buttonText: 'Log In',

@@ -38,11 +38,7 @@ class CustomButton extends StatelessWidget {
 
         ),
         onPressed: () async{
-// <<<<<<< HEAD
-//
-// =======
-          //print(arguments);
-//>>>>>>> 698cdc9574f9a10c64bec438d35539592ead330f
+          print(arguments);
           if (validationCondition) {
             block;
             final result = await function;
@@ -54,9 +50,6 @@ class CustomButton extends StatelessWidget {
             else{
               routeNavigator(widget, arguments);
             }
-
-
-
 
           }
 

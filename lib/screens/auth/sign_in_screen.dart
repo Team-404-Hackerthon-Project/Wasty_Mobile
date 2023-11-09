@@ -14,6 +14,7 @@ import '../../components/verifyBTN.dart';
 import '../../utils/sharedPrefs/usersData.dart';
 import 'forgot_password_screen.dart';
 import 'package:wasty/apis/wasty_api_client.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //AuthAPI client = AuthAPI();
 
@@ -139,11 +140,15 @@ class SignInScreen extends StatelessWidget {
             //       widget: RegistrationScreen(),
             //       function: client.postLogIn(email.text, password.text),
             //     )),
-              VerifyBTN(btn: 'Log in', onTap: () {
+              VerifyBTN(btn: 'Log in', onTap: () async {
 
                 if (_formKey.currentState!.validate()){
                   performLoginRequest();
-
+                  final SharedPreferences prefs = await SharedPreferences.getInstance();
+                  final result = await client.postLogIn(email.text,password.text);
+                  prefs.setString('accesstoken', result);
+                  Get.to(RegistrationScreen(),
+                      duration: const Duration(seconds: 1),transition: Transition.native);
                 }
                 },),
             Center(

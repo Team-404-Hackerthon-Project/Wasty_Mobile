@@ -7,11 +7,14 @@ import 'package:wasty/screens/auth/registration_screen.dart';
 import 'screens/auth/splash_screen.dart';
 
 
+
+
 void main() => runApp(
   // DevicePreview(
   //   builder: (context) =>  MyApp(), // Wrap your app
   // ),
    MyApp()
+
 );
 
 class MyApp extends StatelessWidget {
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return GetMaterialApp(
-      useInheritedMediaQuery: true,
+      //useInheritedMediaQuery: true,
       debugShowCheckedModeBanner: false,
       title: 'Wasty',
       theme: ThemeData(
