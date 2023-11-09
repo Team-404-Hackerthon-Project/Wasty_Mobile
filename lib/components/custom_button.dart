@@ -36,8 +36,10 @@ class CustomButton extends StatelessWidget {
 
         ),
         onPressed: () async{
+          print(arguments);
           if (validationCondition) {
             final result = await function;
+            //setState();
             if(disableStraightRouting){
               if(result.isEmpty()!) {
                 routeNavigator(widget,arguments);}

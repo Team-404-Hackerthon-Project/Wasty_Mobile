@@ -29,6 +29,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController confirmPassword = TextEditingController();
 
   @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context){
     return Scaffold(
       backgroundColor: bodyColor,
@@ -99,6 +107,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   child:
                   CustomButton(
                       buttonName:'Register',
+                      disableStraightRouting: true,
                       widget:LandingPage(),
                       function: client.postRegistration(name.text, email.text, password.text)  ,
                       arguments: {

@@ -6,8 +6,9 @@ class DioClient {
 
   postRegistration(String username, String email, String password) async {
     try {
+      print('function attempting to run');
       final response = await dio.post(
-        'https://documenter.getpostman.com/view/25186838/2s9YXh52wu',
+        'https://hackathon-waste-api.onrender.com/api/v1/auth/register',
         data: {
           'username': username,
           'email': email,
@@ -21,6 +22,7 @@ class DioClient {
         return response.data;
       }
     } catch (e) {
+      print('function failed');
       print('Error: $e');
     }
   }
