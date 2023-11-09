@@ -8,10 +8,10 @@ import 'screens/auth/splash_screen.dart';
 
 
 void main() => runApp(
-  DevicePreview(
-    builder: (context) =>  MyApp(), // Wrap your app
-  ),
-  // MyApp()
+  // DevicePreview(
+  //   builder: (context) =>  MyApp(), // Wrap your app
+  // ),
+   MyApp()
 );
 
 class MyApp extends StatelessWidget {
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00BD15)),
         //useMaterial3: true,
       ),
-      home:  SplashScreen(),
+      home:  const Checkpoint(),
 
       // routes: {
       //   '/splash': (context) => SplashScreen(),
@@ -74,18 +74,16 @@ class _CheckpointState extends State<Checkpoint> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder<void>(
-        future: isRegistered(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          return finalEmail == null
-              ?  SplashScreen()
-              :  RegistrationScreen();
-        },
-      ),
+    return FutureBuilder<void>(
+      future: isRegistered(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return finalEmail == null
+            ?  SplashScreen()
+            :  RegistrationScreen();
+      },
     );
   }
 }

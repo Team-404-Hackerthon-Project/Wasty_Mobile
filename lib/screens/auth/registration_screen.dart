@@ -31,6 +31,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   TextEditingController confirmPassword = TextEditingController();
 
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -126,7 +135,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     hintText: 'Confirm password',
                     textEditingController: confirmPassword,
                     validator: (value){
-                      if (value == null || value.isEmpty || value != password) {
+                      if (value == null || value.isEmpty || value != password.text) {
                         return 'password do not match';
                       }
 
@@ -137,8 +146,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               const SizedBox(height: 20,),
 
               SizedBox(height: 40,),
-              Center(
-                  child:
+
+//<<<<<<< HEAD
                   // CustomButton(
                   //     buttonName:'Register',
                   //     widget:LandingPage(),
@@ -150,15 +159,36 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   //     },
                   //
                   // )
-                  VerifyBTN(btn: 'Log in', onTap: () {
+                 // VerifyBTN(btn: 'Log in', onTap: () {
+//=======
+//                   CustomButton(
+//                       buttonName:'Register',
+//                       disableStraightRouting: true,
+//                       widget:LandingPage(),
+//                       function: client.postRegistration(name.text, email.text, password.text)  ,
+//                       arguments: {
+//                         "username": name.text,
+//                         "email": email.text,
+//                         "password": password.text,
+//                       },
+// //>>>>>>> 698cdc9574f9a10c64bec438d35539592ead330f
+//
+//                   //   if (_formKey.currentState!.validate()){
+//                   //
+//                   //     Get.to(LandingPage(),
+//                   //         duration: const Duration(seconds: 1),transition: Transition.native);
+//                   //   }
+//                   // }
+//                   )
 
-                    if (_formKey.currentState!.validate()){
+              VerifyBTN(btn: 'Register', onTap: (){
+                if (_formKey.currentState!.validate()){
+                  Get.to(LandingPage(),
+                      duration: const Duration(seconds: 1),transition: Transition.native);
+                }
 
-                      Get.to(LandingPage(),
-                          duration: const Duration(seconds: 1),transition: Transition.native);
-                    }
-                  },),
-              ),
+              }),
+
               FooterButton(
                   question: 'Already have an account?',
                   buttonText: 'Log In',

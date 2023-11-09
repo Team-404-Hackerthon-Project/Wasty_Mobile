@@ -1,12 +1,62 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../components/custom_button.dart';
+
+import '../components/verifyBTN.dart';
 import '../constants.dart';
 import 'thanks.dart';
 
 class SubmitInformation extends StatelessWidget {
   const SubmitInformation({Key? key}) : super(key: key);
+
+  void performWasteRequest() async {
+    final dio = Dio();
+
+    // Define the login endpoint and request data
+    const String loginEndpoint = "https://hackathon-waste-api.onrender.com/api/v1/waste-request/add/";
+    final Map<String, dynamic> loginData1 = {
+        "username":Get.arguments['name'].toString(),
+        "location":Get.arguments['location'].toString(),
+        "landmark":Get.arguments['landmark'].toString(),
+        "telephone":Get.arguments['telephone'].toString(),
+        "date":Get.arguments['date'].toString(),
+        "numberOfBins":int.parse(Get.arguments['numberOfBins']),
+        "serviceOption":Get.arguments['service-option'].toString(),
+        "wasteType":Get.arguments['waste-type'].toString(),
+    };
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = await prefs.getString('accessToken');
+    final header = 'Bearer $token';
+
+
+    try {
+      // Make a POST request to the login endpoint
+      final response = await dio.post(loginEndpoint, data: loginData1, options: Options(
+          headers: {
+            'token':header,
+            'Content-Type':'application/json'
+          }));
+
+      // Handle the response
+      if (response.statusCode == 200) {
+        print(response.data);
+
+        Get.to(ConfirmationPage(),
+            duration: const Duration(seconds: 1),transition: Transition.native);
+
+      } else {
+        print("Login failed. Status code: ${response.statusCode}");
+        print("Error message: ${response.data}");
+      }
+    } catch (error) {
+      print("Error: $error");
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -122,10 +172,13 @@ class SubmitInformation extends StatelessWidget {
                   SizedBox(
                     height: size * 0.05,
                   ),
-                  CustomButton(
-                    buttonName: 'NEXT',
-                    widget: ConfirmationPage(),
-                  ),
+                  VerifyBTN(btn: 'Next', onTap: () {
+
+                    performWasteRequest();
+
+
+
+                  },),
                 ],
               ),
             ),

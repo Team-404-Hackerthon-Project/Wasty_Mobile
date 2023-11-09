@@ -1,13 +1,17 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasty/components/custom_text_button.dart';
 import 'package:wasty/components/footer_button.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/components/custom_button.dart';
 import 'package:wasty/components/custom_input_field.dart';
 import 'package:wasty/screens/auth/registration_screen.dart';
+import 'package:wasty/screens/landingPage.dart';
 import '../../components/verifyBTN.dart';
+import '../../utils/sharedPrefs/usersData.dart';
 import 'forgot_password_screen.dart';
 import 'package:wasty/apis/wasty_api_client.dart';
 
@@ -20,6 +24,40 @@ class SignInScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+
+  void performLoginRequest() async {
+    final dio = Dio();
+
+    // Define the login endpoint and request data
+    const String loginEndpoint = "https://hackathon-waste-api.onrender.com/api/v1/auth/login";
+    final Map<String, dynamic> loginData = {
+      "email": email.text,
+      "password": password.text,
+      "appType": "app2",
+    };
+
+    try {
+      // Make a POST request to the login endpoint
+      final response = await dio.post(loginEndpoint, data: loginData);
+
+      // Handle the response
+      if (response.statusCode == 200) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+
+        prefs.setString('accessToken', response.data['accessToken']);
+
+        Get.to(LandingPage(),
+            duration: const Duration(seconds: 1),transition: Transition.native);
+
+      } else {
+        print("Login failed. Status code: ${response.statusCode}");
+        print("Error message: ${response.data}");
+      }
+    } catch (error) {
+      print("Error: $error");
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +115,7 @@ class SignInScreen extends StatelessWidget {
             Center(
               child: CustomInputField(
                   hintText: 'Password',
-                  textEditingController: email,
+                  textEditingController: password,
                   validator: (value){
                     if (value == null || value.isEmpty) {
                       return 'Please provide a password';
@@ -104,8 +142,8 @@ class SignInScreen extends StatelessWidget {
               VerifyBTN(btn: 'Log in', onTap: () {
 
                 if (_formKey.currentState!.validate()){
-                  Get.to(RegistrationScreen(),
-                      duration: const Duration(seconds: 1),transition: Transition.native);
+                  performLoginRequest();
+
                 }
                 },),
             Center(
