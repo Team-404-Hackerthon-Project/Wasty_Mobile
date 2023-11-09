@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../components/custom_button.dart';
+import '../components/verifyBTN.dart';
 import '../constants.dart';
 import '../widgets/textfields_widgets.dart';
 import 'verify.dart';
@@ -22,7 +25,7 @@ class _RequestPageState extends State<RequestPage> {
   //final _bins = TextEditingController();
 
   List<String> numberOfBins = [
-    ' ',
+    'Select bins',
     '1',
     '2',
     '3',
@@ -30,23 +33,23 @@ class _RequestPageState extends State<RequestPage> {
     '5',
     'more',
   ];
-  String? selectednumberOfBins = ' ';
+  String? selectednumberOfBins = 'Select bins';
 
   List<String> WasteType = [
-    ' ',
+    'Select wast type',
     'Household Waste',
     'Recyclables',
     'Hazardous',
     'Organic Waste'
   ];
-  String? selectedWasteType = ' ';
+  String? selectedWasteType = 'Select wast type';
 
   List<String> serviceOption = [
-    ' ',
+    'Select service option',
     'One-time-picker',
     'Regular Pickup',
   ];
-  String? selectedServiceOption = ' ';
+  String? selectedServiceOption = 'Select service option';
   @override
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width;
@@ -56,58 +59,63 @@ class _RequestPageState extends State<RequestPage> {
         children: [
           Flexible(
             flex: 1,
-            child: Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF00BD15),
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(15.0),
-                      bottomLeft: Radius.circular(15.0),
+            child: SingleChildScrollView(
+              child: Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF00BD15),
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(15.0),
+                        bottomLeft: Radius.circular(15.0),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(height: size * 0.2),
+                        const Center(
+                          child: CircleAvatar(
+                            radius: 50,
+                            backgroundImage: AssetImage(
+                                'assets/images/person.png'), // Replace with your image asset
+                          ),
+                        ),
+                        SizedBox(height: size * 0.02,),
+                        const Text(
+                          'Meet your vendor Bob',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFF474A56),
+                          ),
+                        ),
+                        SizedBox(height: size * 0.01,),
+                        const Text(
+                          'LOC: Takoradi',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFF474A56),
+                          ),
+                        ),
+                        SizedBox(height: size * 0.05),
+                      ],
                     ),
                   ),
-                  child: Column(
-                    children: [
-                      SizedBox(height: size * 0.2),
-                      const Center(
-                        child: CircleAvatar(
-                          radius: 50,
-                          backgroundImage: AssetImage(
-                              'assets/images/person.png'), // Replace with your image asset
-                        ),
-                      ),
-                      const Text(
-                        'Meet your vendor Bob',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFF474A56),
-                        ),
-                      ),
-                      const Text(
-                        'LOC: Takoradi',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFF474A56),
-                        ),
-                      ),
-                    ],
+                  Positioned(
+                    top: -15,
+                    left: -10,
+                    child: Image.asset(
+                      'assets/images/shapes.png',
+                      //width: 100,
+                      height: 100,
+                    ),
                   ),
-                ),
-                Positioned(
-                  top: -15,
-                  left: -10,
-                  child: Image.asset(
-                    'assets/images/shapes.png',
-                    //width: 100,
-                    height: 100,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           Form(
@@ -128,66 +136,66 @@ class _RequestPageState extends State<RequestPage> {
                         color: Color(0xFF474A56),
                       ),
                     ),
-                    MyTextField(
+                    RequestTextField(
                       controller: _nameController,
                       keyboardType: TextInputType.name,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your Name';
+                          return 'Enter your Name';
                         }
 
                         return null;
                       },
-                      cardName: 'Name',
+                      cardName: 'Name', hint: 'Please enter your name',
                     ),
-                    MyTextField(
+                    RequestTextField(
                       controller: _location,
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your Location';
+                          return 'Enter your Location';
                         }
 
                         return null;
                       },
-                      cardName: 'Location',
+                      cardName: 'Location', hint: 'Enter location',
                     ),
-                    MyTextField(
+                    RequestTextField(
                       controller: _landmark,
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your landmark';
+                          return 'Enter your landmark';
                         }
 
                         return null;
                       },
-                      cardName: 'Landmark',
+                      cardName: 'Landmark', hint: 'Please enter your landmark',
                     ),
-                    MyTextField(
+                    RequestTextField(
                       controller: _date,
                       keyboardType: TextInputType.text,
                       iconData: Icons.calendar_today,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please select a date';
+                          return 'Select a date';
                         }
 
                         return null;
                       },
-                      cardName: 'Date',
+                      cardName: 'Date', hint: 'Please select a date',
                     ),
-                    MyTextField(
+                    RequestTextField(
                       controller: _phone,
                       keyboardType: TextInputType.phone,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your contact';
+                          return 'Enter your contact';
                         }
 
                         return null;
                       },
-                      cardName: 'Telephone',
+                      cardName: 'Telephone', hint: 'Please enter your contact',
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -200,7 +208,7 @@ class _RequestPageState extends State<RequestPage> {
                             child: DropdownButtonFormField<String>(
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
-                                hintText: ' ',
+                                hintText: 'Select wast type',
                                 contentPadding: EdgeInsets.zero,
                               ),
                               items: WasteType.map<DropdownMenuItem<String>>(
@@ -235,7 +243,7 @@ class _RequestPageState extends State<RequestPage> {
                             child: DropdownButtonFormField<String>(
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
-                                hintText: ' ',
+                                hintText: 'Select bins',
                                 contentPadding: EdgeInsets.zero,
                               ),
                               items:
@@ -269,7 +277,7 @@ class _RequestPageState extends State<RequestPage> {
                             child: DropdownButtonFormField<String>(
                               decoration: const InputDecoration(
                                 border: InputBorder.none,
-                                hintText: ' ',
+                                hintText: 'Select service option',
                                 contentPadding: EdgeInsets.zero,
                               ),
                               items:
@@ -281,47 +289,37 @@ class _RequestPageState extends State<RequestPage> {
                                 );
                               }).toList(),
                               onChanged: (String? newValue) {
-                                // Handle dropdown value changes here
-
+                                
                                 selectedServiceOption = newValue;
                               },
-                              // Set an initial value if needed
+                              
                               value: selectedServiceOption,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    CustomButton(
-                      buttonName: 'NEXT',
-                      widget: SubmitInformation(
-                        arguments:
-                        {
-                         'name': _nameController.text.toString(),
-                         'location': _location.text.toString(),
-                         'landMark': _landmark.text.toString(),
-                         'date': _date.text.toString(),
-                         'phone': _phone.text.toString(),
-                         'selectedWasteType': selectedWasteType.toString(),
-                         'selectednumberOfBins': selectednumberOfBins.toString(),
-                         'selectedServiceOption': selectedServiceOption.toString()
-                      },
-                      ), 
-                      
-                      
-                    //   () {
-                    // if (_formKey.currentState!.validate()) {
+
+                    VerifyBTN(btn: 'Next', onTap: () {
+
+                      if (_formKey.currentState!.validate()){
+                        Get.to(const SubmitInformation(),
+                            arguments: {
+                              'name': _nameController.text.toString(),
+                              'location': _location.text.toString(),
+                              'landmark': _landmark.text.toString(),
+                              'date': _date.text.toString(),
+                              'telephone': _phone.text.toString(),
+                              'waste-type': selectedWasteType.toString(),
+                              'numberOfBins': selectednumberOfBins.toString(),
+                              'service-option': selectedServiceOption.toString(),
 
 
-                    //   // Navigate to the next screen
-                    //   Get.to(const SubmitInformation(),
-                   
-                      
-                    //       duration: const Duration(seconds: 1),
-                    //       transition: Transition.native);
-                    // }
-                    //   },
-                    ),
+                            },
+                            duration: const Duration(seconds: 1),transition: Transition.native);
+                      }
+
+                    },),
                     SizedBox(
                       height: size * 0.03,
                     )

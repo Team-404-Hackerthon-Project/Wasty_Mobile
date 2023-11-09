@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 
-class MyTextField extends StatefulWidget {
+class RequestTextField extends StatefulWidget {
   final TextEditingController controller;
   final String? Function(dynamic value)? validator;
   final TextInputType keyboardType;
   final String cardName;
   final IconData? iconData;
+  final String hint;
 
-  const MyTextField({
+  const RequestTextField({
     Key? key,
     required this.controller,
     required this.cardName,
+    required this.hint,
     required this.keyboardType,
     this.validator,
     this.iconData,
   }) : super(key: key);
 
   @override
-  _MyTextFieldState createState() => _MyTextFieldState();
+  _RequestTextFieldState createState() => _RequestTextFieldState();
 }
 
-class _MyTextFieldState extends State<MyTextField> {
+class _RequestTextFieldState extends State<RequestTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,6 +41,7 @@ class _MyTextFieldState extends State<MyTextField> {
               validator: widget.validator,
               cursorColor: const Color(0xFF00BD15),
               decoration: InputDecoration(
+                hintText: widget.hint,
                 fillColor: Colors.white,
                 filled: true,
                 focusedBorder: const OutlineInputBorder(
@@ -73,3 +76,4 @@ class _MyTextFieldState extends State<MyTextField> {
     }
   }
 }
+

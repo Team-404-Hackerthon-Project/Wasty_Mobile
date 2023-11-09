@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:wasty/components/custom_input_field.dart';
 import 'package:wasty/components/footer_button.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/components/custom_button.dart';
 import 'package:wasty/screens/landingPage.dart';
 import 'package:wasty/apis/wasty_api_client.dart';
+import '../../components/verifyBTN.dart';
 import 'sign_in_screen.dart';
 
 
@@ -53,35 +56,62 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
               ),
 
+
+            //SizedBox(height: size * 0.05),
+
+            const Center(child: Text('Welcome to Wasty!',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+                color: Color(0xFF474A56),
+              ),
+            )),
+
               const SizedBox(height: 20,),
 
-              const Center(child: Text('Welcome to Wasty!')),
 
-              const SizedBox(height: 10,),
+            const Center(child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 80, vertical: 40),
+              child:
+              Text(
+                  maxLines: 4,
+                  textAlign: TextAlign.center,
+                  'How you manage your waste? If not then start from now', style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF474A56),
+              ),),
+            )),
+            const SizedBox(height: 10,),
+            Center(
+              child: CustomInputField(
+                  hintText: 'Enter full name',
+                  textEditingController: name,
+                  validator: (value){
+                    if (value == null || value.isEmpty) {
+                      return 'Enter your Name';
+                    }
 
-              const Center(child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 40),
-                child:
-                Text(
-                    maxLines: 4,
-                    textAlign: TextAlign.center,
-                    'How you manage your waste? If not then start from now'),
-              )),
-              const SizedBox(height: 10,),
-              Center(
-                child: CustomInputField(
-                    hintText: 'Enter full name',
-                    textEditingController: name,
-                    validator: (value){},
-                    keyboardType: TextInputType.text),
-              ),
+                    return null;
+                  },
+                  keyboardType: TextInputType.text),
+            ),
+
 
               const SizedBox(height: 20,),
               Center(
                 child: CustomInputField(
                     hintText: 'Email address',
                     textEditingController: email,
-                    validator: (value){},
+                    validator: (value){
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email address';
+                      }
+
+                      return null;
+                    },
                     keyboardType: TextInputType.text),
               ),
               const SizedBox(height: 20,),
@@ -89,7 +119,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 child: CustomInputField(
                     hintText: 'Password',
                     textEditingController: password,
-                    validator: (value){},
+                    validator: (value){
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your Password';
+                      }
+
+                      return null;
+                    },
                     keyboardType: TextInputType.text),
               ),
               const SizedBox(height: 20,),
@@ -97,7 +133,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 child: CustomInputField(
                     hintText: 'Confirm password',
                     textEditingController: confirmPassword,
-                    validator: (value){},
+                    validator: (value){
+                      if (value == null || value.isEmpty || value != password.text) {
+                        return 'password do not match';
+                      }
+
+                      return null;
+                    },
                     keyboardType: TextInputType.text),
               ),
               const SizedBox(height: 20,),
@@ -105,18 +147,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               SizedBox(height: 40,),
               Center(
                   child:
-                  CustomButton(
-                      buttonName:'Register',
-                      disableStraightRouting: true,
-                      widget:LandingPage(),
-                      function: client.postRegistration(name.text, email.text, password.text)  ,
-                      arguments: {
-                        "username": name.text,
-                        "email": email.text,
-                        "password": password.text,
-                      },
 
-                  )
+                  VerifyBTN(btn: 'Register', onTap: () async{
+
+                    if (_formKey.currentState!.validate()){
+                      final result = await client.postRegistration(name.text,email.text,password.text);
+                      Get.to(LandingPage(),
+                          duration: const Duration(seconds: 1),transition: Transition.native);
+                    }
+                  },),
               ),
               FooterButton(
                   question: 'Already have an account?',

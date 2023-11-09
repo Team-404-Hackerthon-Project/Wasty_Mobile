@@ -6,20 +6,16 @@ import '../constants.dart';
 import 'thanks.dart';
 
 class SubmitInformation extends StatelessWidget {
-  final Map<String,String> arguments;
-  const SubmitInformation({Key? key, required this.arguments}) : super(key: key);
-
-
+  const SubmitInformation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //print(arguments['selectedServiceOption']);
-    //final requestArguments = Get.arguments;
+    final requestArguments = Get.arguments;
     double size = MediaQuery.of(context).size.width;
 
-    //  String getArgument(String key) {
-    //   return requestArguments[key] ?? ' ';
-    // }
+     String getArgument(String key) {
+      return requestArguments[key] ?? ' ';
+    }
 
     Widget buildRow(String label, String value) {
       return Row(
@@ -90,50 +86,49 @@ class SubmitInformation extends StatelessWidget {
                 ),
               ),
             ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    buildRow('Name:', arguments['name'].toString()),
-                    SizedBox(
-                      height: size * 0.05,
-                    ),
-                    buildRow('Location:', arguments['location'].toString()),
-                    SizedBox(
-                      height: size * 0.05,
-                    ),
-                    buildRow('Landmark:', arguments['landMark'].toString()),
-                    SizedBox(
-                      height: size * 0.05,
-                    ),
-                    buildRow('Date:', arguments['date'].toString()),
-                    SizedBox(
-                      height: size * 0.05,
-                    ),
-                    buildRow('Telephone:', arguments['phone'].toString()),
-                    SizedBox(
-                      height: size * 0.05,
-                    ),
-                    buildRow('Number of Bins:', arguments['selectedWasteType'].toString()),
-                    SizedBox(
-                      height: size * 0.05,
-                    ),
-                    buildRow('Service Option:', arguments['selectednumberOfBins'].toString()),
-                    SizedBox(
-                      height: size * 0.05,
-                    ),
-                    buildRow('Waste Type:', arguments['selectedServiceOption'].toString()),
-                    SizedBox(
-                      height: size * 0.05,
-                    ),
-                    const CustomButton(
-                      buttonName: 'NEXT',
-                      widget: ConfirmationPage(),
-                    ),
-                  ],
-                ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  buildRow('Name:', getArgument('name').toString()),
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  buildRow('Location:', getArgument('location').toString()),
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  buildRow('Landmark:', getArgument('landmark').toString()),
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  buildRow('Date:', getArgument('date').toString()),
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  buildRow('Telephone:', getArgument('telephone').toString()),
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  buildRow('Number of Bins:', getArgument('numberOfBins').toString()),
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  buildRow('Service Option:', getArgument('service-option').toString().toString()),
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  buildRow('Waste Type:', getArgument('waste-type').toString()),
+                  SizedBox(
+                    height: size * 0.05,
+                  ),
+                  CustomButton(
+                    buttonName: 'NEXT',
+                    widget: ConfirmationPage(),
+                  ),
+                ],
               ),
-            
+            ),
           ],
         ),
       ),

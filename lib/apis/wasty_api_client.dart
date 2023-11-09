@@ -29,15 +29,17 @@ class DioClient {
 
   postLogIn(String email, String password) async {
     try {
-      print(email);
-      print(password);
       final response = await dio.post(
         'https://hackathon-waste-api.onrender.com/api/v1/auth/login',
         data: {'email': email, 'password': password, 'appType': 'app2'},
+
+        // options: Options(contentType: Headers.jsonContentType,
+        //     headers: {'Content-Type':'application/json','Accept':'application/json'})
       );
 
       if (response.statusCode == 200) {
-        print(response.data);
+        print(response.data['accessToken']);
+        return(response.data);
       }
     } catch (e) {
       print('Error: $e');

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/utils/navigation/route_navigator.dart';
 
@@ -19,17 +20,18 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-          //minimumSize: Size.fromRadius(radius),
-          fixedSize:Size(370,70),
+          //minimumSize: Size.fromRadius(8),
+          fixedSize:const Size(370,50),
           //Size.fromWidth(370),
           backgroundColor: buttonColor,
+
           foregroundColor: buttonTextColor,
           elevation: 0,
-          padding: const EdgeInsetsDirectional.symmetric(horizontal: 100, vertical: 0.0),
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 100, vertical: 10.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(0.0),
           ),
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
             fontSize: 20,
           )
 
@@ -38,6 +40,7 @@ class CustomButton extends StatelessWidget {
         onPressed: () async{
           print(arguments);
           if (validationCondition) {
+            block;
             final result = await function;
             //setState();
             if(disableStraightRouting){
@@ -47,11 +50,9 @@ class CustomButton extends StatelessWidget {
             else{
               routeNavigator(widget, arguments);
             }
-            //block;
-
-
 
           }
+
           },
 
       child: Text(
