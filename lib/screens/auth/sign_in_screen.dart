@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,12 +13,9 @@ import 'package:wasty/components/custom_input_field.dart';
 import 'package:wasty/screens/auth/registration_screen.dart';
 import 'package:wasty/screens/landingPage.dart';
 import '../../components/verifyBTN.dart';
-import '../../utils/sharedPrefs/usersData.dart';
 import 'forgot_password_screen.dart';
 import 'package:wasty/apis/wasty_api_client.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-//AuthAPI client = AuthAPI();
 
 DioClient client = DioClient();
 
@@ -44,16 +42,25 @@ class SignInScreen extends StatelessWidget {
 
       // Handle the response
       if (response.statusCode == 200) {
+
         SharedPreferences prefs = await SharedPreferences.getInstance();
 
+        //saving users accessToken
         prefs.setString('accessToken', response.data['accessToken']);
 
+        //returning users to the landing page
         Get.to(LandingPage(),
             duration: const Duration(seconds: 1),transition: Transition.native);
 
       } else {
-        print("Login failed. Status code: ${response.statusCode}");
-        print("Error message: ${response.data}");
+        Fluttertoast.showToast(
+          msg: 'Registration failed. Please try again.',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+        );
+
       }
     } catch (error) {
       print("Error: $error");
@@ -122,7 +129,6 @@ class SignInScreen extends StatelessWidget {
                     if (value == null || value.isEmpty) {
                       return 'Please provide a password';
                     }
-
                     return null;
                   },
                   keyboardType: TextInputType.text),
@@ -134,13 +140,8 @@ class SignInScreen extends StatelessWidget {
                   widget: ForgotPasswordScreen(),
                 )),
 
-            SizedBox(height: 20,),
-            // Center(
-            //     child: CustomButton(
-            //       buttonName:'Log In',
-            //       widget: RegistrationScreen(),
-            //       function: client.postLogIn(email.text, password.text),
-            //     )),
+            const SizedBox(height: 20,),
+
               VerifyBTN(btn: 'Log in', onTap: () async {
 
                 if (_formKey.currentState!.validate()){
