@@ -4,28 +4,47 @@ import 'package:wasty/components/footer_button.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/components/custom_button.dart';
 import 'package:wasty/screens/landingPage.dart';
-
-
+import 'package:wasty/apis/wasty_api_client.dart';
 import 'sign_in_screen.dart';
 
-class RegistrationScreen extends StatelessWidget {
+
+DioClient client = DioClient();
+
+class RegistrationScreen extends StatefulWidget{
   RegistrationScreen({super.key});
+
+  @override
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
+}
+
+class _RegistrationScreenState extends State<RegistrationScreen> {
+  final _formKey = GlobalKey<FormState>();
 
   TextEditingController name = TextEditingController();
 
+  TextEditingController email = TextEditingController();
+
+  TextEditingController password = TextEditingController();
+
+  TextEditingController confirmPassword = TextEditingController();
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       backgroundColor: bodyColor,
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Image(
-              image: AssetImage(
-                  'assets/images/overlapping_circles.png'
+        child:
+        Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Image(
+                image: AssetImage(
+                    'assets/images/overlapping_circles.png'
+                ),
               ),
-            ),
+
 
             //SizedBox(height: size * 0.05),
 
@@ -38,7 +57,8 @@ class RegistrationScreen extends StatelessWidget {
               ),
             )),
 
-            const SizedBox(height: 10,),
+              const SizedBox(height: 20,),
+
 
             const Center(child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 80, vertical: 40),
@@ -68,47 +88,56 @@ class RegistrationScreen extends StatelessWidget {
                   keyboardType: TextInputType.text),
             ),
 
-            const SizedBox(height: 20,),
-            Center(
-              child: CustomInputField(
-                  hintText: 'Email address',
-                  textEditingController: name,
-                  validator: (value){},
-                  keyboardType: TextInputType.text),
-            ),
-            const SizedBox(height: 20,),
-            Center(
-              child: CustomInputField(
-                  hintText: 'Password',
-                  textEditingController: name,
-                  validator: (value){},
-                  keyboardType: TextInputType.text),
-            ),
-            const SizedBox(height: 20,),
-            Center(
-              child: CustomInputField(
-                  hintText: 'Contact number +91',
-                  textEditingController: name,
-                  validator: (value){},
-                  keyboardType: TextInputType.text),
-            ),
-            const SizedBox(height: 20,),
-            Center(
-              child: CustomInputField(
-                  hintText: 'Current location',
-                  textEditingController: name,
-                  validator: (value){},
-                  keyboardType: TextInputType.text),
-            ),
-            SizedBox(height: 40,),
-            Center(child: CustomButton(buttonName:'Register',widget:LandingPage())),
-            FooterButton(
-                question: 'Already have an account?',
-                buttonText: 'Sign In',
-                object: SignInScreen(),
-            )
 
-          ],
+              const SizedBox(height: 20,),
+              Center(
+                child: CustomInputField(
+                    hintText: 'Email address',
+                    textEditingController: email,
+                    validator: (value){},
+                    keyboardType: TextInputType.text),
+              ),
+              const SizedBox(height: 20,),
+              Center(
+                child: CustomInputField(
+                    hintText: 'Password',
+                    textEditingController: password,
+                    validator: (value){},
+                    keyboardType: TextInputType.text),
+              ),
+              const SizedBox(height: 20,),
+              Center(
+                child: CustomInputField(
+                    hintText: 'Confirm password',
+                    textEditingController: confirmPassword,
+                    validator: (value){},
+                    keyboardType: TextInputType.text),
+              ),
+              const SizedBox(height: 20,),
+
+              SizedBox(height: 40,),
+              Center(
+                  child:
+                  CustomButton(
+                      buttonName:'Register',
+                      widget:LandingPage(),
+                      function: client.postRegistration(name.text, email.text, password.text)  ,
+                      arguments: {
+                        "username": name.text,
+                        "email": email.text,
+                        "password": password.text,
+                      },
+
+                  )
+              ),
+              FooterButton(
+                  question: 'Already have an account?',
+                  buttonText: 'Log In',
+                  object: SignInScreen(),
+              )
+
+            ],
+          ),
         ),
       ) ,
 

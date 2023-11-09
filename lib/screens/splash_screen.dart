@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/components/custom_button.dart';
 import 'package:wasty/screens/auth/registration_screen.dart';
+
+import '../components/verifyBTN.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -24,7 +28,7 @@ class SplashScreen extends StatelessWidget {
 
             const Center(
               child: Text(
-                  'Wasty',
+                  'Wastless',
                 style: TextStyle(
                   fontSize: 35,
                 ),
@@ -58,7 +62,11 @@ class SplashScreen extends StatelessWidget {
             )),
             SizedBox(height: size * 0.1),
 
-            Center(child: CustomButton(buttonName:'Get Started', widget: RegistrationScreen(),)),
+            //Center(child: CustomButton(buttonName:'Get Started', widget: RegistrationScreen(),)),
+            // VerifyBTN(btn: 'Get Stabbbbbhrted',
+            //   onTap: () {
+            //     Get.to(RegistrationScreen());
+            //   },)
           ],
         ),
       ) ,

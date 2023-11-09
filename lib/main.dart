@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00BD15)),
         //useMaterial3: true,
       ),
-      home:  const Checkpoint(),
+      home:  SplashScreen(),
 
       // routes: {
       //   '/splash': (context) => SplashScreen(),
