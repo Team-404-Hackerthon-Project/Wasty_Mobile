@@ -24,11 +24,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController name = TextEditingController();
-
   TextEditingController email = TextEditingController();
-
   TextEditingController password = TextEditingController();
-
   TextEditingController confirmPassword = TextEditingController();
 
 
@@ -124,7 +121,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your Password';
                       }
-
                       return null;
                     },
                     keyboardType: TextInputType.text),
@@ -138,13 +134,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       if (value == null || value.isEmpty || value != password.text) {
                         return 'password do not match';
                       }
-
                       return null;
                     },
                     keyboardType: TextInputType.text),
               ),
-              const SizedBox(height: 20,),
-
               SizedBox(height: 40,),
               Center(
                   child:
@@ -153,8 +146,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
                     if (_formKey.currentState!.validate()){
                       final result = await client.postRegistration(name.text,email.text,password.text);
-                      Get.to(LandingPage(),
-                          duration: const Duration(seconds: 1),transition: Transition.native);
+
                     }
                   },),
               ),

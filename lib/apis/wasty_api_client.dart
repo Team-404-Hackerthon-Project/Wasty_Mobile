@@ -1,4 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../screens/auth/sign_in_screen.dart';
 
 
 class DioClient {
@@ -18,7 +24,8 @@ class DioClient {
       );
 
       if (response.statusCode == 200) {
-        print(response.data);
+        Get.to(SignInScreen(),
+            duration: const Duration(seconds: 1),transition: Transition.native);
         return response.data;
       }
     } catch (e) {
@@ -42,6 +49,14 @@ class DioClient {
         return(response.data);
       }
     } catch (e) {
+      // Display error message to the user using fluttertoast
+      Fluttertoast.showToast(
+        msg: 'Registration failed. Please try again.',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+      );
       print('Error: $e');
     }
   }
