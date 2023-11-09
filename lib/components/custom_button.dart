@@ -15,13 +15,14 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-          //minimumSize: Size.fromRadius(radius),
-          fixedSize:Size(370,70),
+          //minimumSize: Size.fromRadius(8),
+          fixedSize:const Size(370,50),
           //Size.fromWidth(370),
           backgroundColor: buttonColor,
+
           foregroundColor: buttonTextColor,
           elevation: 0,
-          padding: const EdgeInsetsDirectional.symmetric(horizontal: 100, vertical: 0.0),
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 100, vertical: 10.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(0.0),
           ),

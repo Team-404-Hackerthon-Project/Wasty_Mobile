@@ -58,7 +58,13 @@ class RegistrationScreen extends StatelessWidget {
               child: CustomInputField(
                   hintText: 'Enter full name',
                   textEditingController: name,
-                  validator: (value){},
+                  validator: (value){
+                    if (value == null || value.isEmpty) {
+                      return 'Enter your Name';
+                    }
+
+                    return null;
+                  },
                   keyboardType: TextInputType.text),
             ),
 

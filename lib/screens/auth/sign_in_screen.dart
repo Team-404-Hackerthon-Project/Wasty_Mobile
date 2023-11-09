@@ -53,7 +53,9 @@ class SignInScreen extends StatelessWidget {
               child: CustomInputField(
                   hintText: 'Email address',
                   textEditingController: email,
-                  validator: (value){},
+                  validator: (value){
+
+                  },
                   keyboardType: TextInputType.text),
             ),
 

@@ -301,24 +301,24 @@ class _RequestPageState extends State<RequestPage> {
                     ),
 
                     VerifyBTN(btn: 'Next', onTap: () {
-                      // Get.to( SubmitInformation()),
-                      Get.to(const SubmitInformation(),
-                          arguments: {
-                          // -------------------------------------------------
-                          // these are argument from the model page that are being passed to the detailed screen
-                          // ---------------------------------------------------
-                          'name': _nameController.text.toString(),
-                          'location': _location.text.toString(),
-                          'landmark': _landmark.text.toString(),
-                          'date': _date.text.toString(),
-                          'telephone': _phone.text.toString(),
-                          'waste-type': selectedWasteType.toString(),
-                          'numberOfBins': selectednumberOfBins.toString(),
-                          'service-option': selectedServiceOption.toString(),
+
+                      if (_formKey.currentState!.validate()){
+                        Get.to(const SubmitInformation(),
+                            arguments: {
+                              'name': _nameController.text.toString(),
+                              'location': _location.text.toString(),
+                              'landmark': _landmark.text.toString(),
+                              'date': _date.text.toString(),
+                              'telephone': _phone.text.toString(),
+                              'waste-type': selectedWasteType.toString(),
+                              'numberOfBins': selectednumberOfBins.toString(),
+                              'service-option': selectedServiceOption.toString(),
 
 
-                          },
-                          duration: const Duration(seconds: 1),transition: Transition.native);
+                            },
+                            duration: const Duration(seconds: 1),transition: Transition.native);
+                      }
+
                     },),
                     SizedBox(
                       height: size * 0.03,
