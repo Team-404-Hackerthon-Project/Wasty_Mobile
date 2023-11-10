@@ -36,6 +36,10 @@ class SubmitInformation extends StatelessWidget {
 
     try {
       // Make a POST request to the login endpoint
+      print(loginData1);
+      print('============================');
+      print('Request initiated');
+      print('============================');
       final response = await dio.post(loginEndpoint, data: loginData1, options: Options(
           headers: {
             'token':header,
@@ -46,12 +50,9 @@ class SubmitInformation extends StatelessWidget {
       if (response.statusCode == 200) {
         print(response.data);
 
-        Get.to(ConfirmationPage(),
-            duration: const Duration(seconds: 1),transition: Transition.native);
+        // Get.to(ConfirmationPage(),
+        //     duration: const Duration(seconds: 1),transition: Transition.native);
 
-      } else {
-        print("Login failed. Status code: ${response.statusCode}");
-        print("Error message: ${response.data}");
       }
     } catch (error) {
       print("Error: $error");
@@ -174,9 +175,9 @@ class SubmitInformation extends StatelessWidget {
                     height: size * 0.05,
                   ),
                   VerifyBTN(btn: 'Next', onTap: () async{
-                    progressIndicatorBuilder(context);
+                    //progressIndicatorBuilder(context);
                     performWasteRequest();
-                    Navigator.pop(context);
+                    //Navigator.pop(context);
                     Get.to(ConfirmationPage(),
                         duration: const Duration(seconds: 1),transition: Transition.native);
 

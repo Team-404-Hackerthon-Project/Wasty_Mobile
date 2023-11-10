@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,13 +53,7 @@ class SignInScreen extends StatelessWidget {
             duration: const Duration(seconds: 1),transition: Transition.native);
 
       } else {
-        Fluttertoast.showToast(
-          msg: 'Registration failed. Please try again.',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-        );
+
 
       }
     } catch (error) {
@@ -123,6 +117,7 @@ class SignInScreen extends StatelessWidget {
 
             Center(
               child: CustomInputField(
+                obscureText: true,
                   hintText: 'Password',
                   textEditingController: password,
                   validator: (value){
@@ -148,10 +143,10 @@ class SignInScreen extends StatelessWidget {
                   progressIndicatorBuilder(context);
                   performLoginRequest();
                   final SharedPreferences prefs = await SharedPreferences.getInstance();
-                  final result = await client.postLogIn(email.text,password.text);
-                  prefs.setString('accesstoken', result);
+                  //final result = await client.postLogIn(email.text,password.text);
+                  //prefs.setString('accesstoken', result);
                   Navigator.pop(context);
-                  Get.to(RegistrationScreen(),
+                  Get.to(LandingPage(),
                       duration: const Duration(seconds: 1),transition: Transition.native);
                 }
                 },),

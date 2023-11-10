@@ -115,6 +115,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               const SizedBox(height: 20,),
               Center(
                 child: CustomInputField(
+                  obscureText: true,
                     hintText: 'Password',
                     textEditingController: password,
                     validator: (value){
@@ -128,6 +129,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               const SizedBox(height: 20,),
               Center(
                 child: CustomInputField(
+                  obscureText: true ,
                     hintText: 'Confirm password',
                     textEditingController: confirmPassword,
                     validator: (value){
@@ -148,7 +150,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       progressIndicatorBuilder(context);
                       final result = await client.postRegistration(name.text,email.text,password.text);
                       Navigator.pop(context);
-                      Get.to(LandingPage(),
+                      Get.to(SignInScreen(),
                           duration: const Duration(seconds: 1),transition: Transition.native);
                     }
                   },),

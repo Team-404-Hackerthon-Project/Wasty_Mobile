@@ -6,13 +6,16 @@ class CustomInputField extends StatefulWidget {
   final String? Function(String?)? validator;
   final TextEditingController textEditingController;
   final TextInputType keyboardType;
+  final bool obscureText;
 
   const CustomInputField(
       {Key? key,
         required this.hintText,
         required this.textEditingController,
         required this.validator,
-        required this.keyboardType,}): super(key:key);
+        required this.keyboardType,
+        this.obscureText = false,
+      }): super(key:key);
 
   @override
   State<CustomInputField> createState() => _CustomInputFieldState();
@@ -35,6 +38,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 30),
             child: TextFormField(
+              obscureText: widget.obscureText,
               onChanged: (value){
                 setState(() {widget.textEditingController;});
                 },
