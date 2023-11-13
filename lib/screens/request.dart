@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
-import '../components/custom_button.dart';
 import '../components/verifyBTN.dart';
 import '../constants.dart';
 import '../widgets/textfields_widgets.dart';
@@ -78,7 +76,7 @@ class _RequestPageState extends State<RequestPage> {
                           child: CircleAvatar(
                             radius: 50,
                             backgroundImage: AssetImage(
-                                'assets/images/person.png'), // Replace with your image asset
+                                'assets/images/person.png'), 
                           ),
                         ),
                         SizedBox(height: size * 0.02,),

@@ -4,12 +4,11 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:wasty/components/custom_input_field.dart';
 import 'package:wasty/components/footer_button.dart';
 import 'package:wasty/constants.dart';
-import 'package:wasty/components/custom_button.dart';
-import 'package:wasty/screens/landingPage.dart';
 import 'package:wasty/apis/wasty_api_client.dart';
 import '../../components/verifyBTN.dart';
 import 'sign_in_screen.dart';
 import 'package:wasty/components/progress_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 DioClient client = DioClient();
 
@@ -39,6 +38,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context){
+    var size = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: bodyColor,
       body: SingleChildScrollView(
@@ -55,18 +55,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
 
 
-            //SizedBox(height: size * 0.05),
+            
 
             const Center(child: Text('Welcome to Wasty!',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-                color: Color(0xFF474A56),
-              ),
+             style: AppStyle.headerText,
             )),
 
-              const SizedBox(height: 20,),
+              SizedBox(height: size * 0.05),
 
 
             const Center(child: Padding(
@@ -75,14 +70,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               Text(
                   maxLines: 4,
                   textAlign: TextAlign.center,
-                  'How you manage your waste? If not then start from now', style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: Color(0xFF474A56),
-              ),),
+                  'How you manage your waste? If not then start from now', style: AppStyle.bodyText,),
             )),
-            const SizedBox(height: 10,),
+            SizedBox(height: size * 0.05),
             Center(
               child: CustomInputField(
                   hintText: 'Enter full name',
@@ -96,9 +86,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   },
                   keyboardType: TextInputType.text),
             ),
-
-
-              const SizedBox(height: 20,),
+              SizedBox(height: size * 0.05),
               Center(
                 child: CustomInputField(
                     hintText: 'Email address',
@@ -112,7 +100,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     },
                     keyboardType: TextInputType.text),
               ),
-              const SizedBox(height: 20,),
+SizedBox(height: size * 0.05),
               Center(
                 child: CustomInputField(
                   obscureText: true,
@@ -126,8 +114,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     },
                     keyboardType: TextInputType.text),
               ),
-              const SizedBox(height: 20,),
-              Center(
+SizedBox(height: size * 0.05),              Center(
                 child: CustomInputField(
                   obscureText: true ,
                     hintText: 'Confirm password',
@@ -140,16 +127,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     },
                     keyboardType: TextInputType.text),
               ),
-              SizedBox(height: 40,),
-              Center(
+SizedBox(height: size * 0.1),              Center(
                   child:
 
                   VerifyBTN(btn: 'Register', onTap: () async{
 
                     if (_formKey.currentState!.validate()){
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      prefs.setString('email', email.text);
                       progressIndicatorBuilder(context);
                       final result = await client.postRegistration(name.text,email.text,password.text);
                       Navigator.pop(context);
+                       ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('Registration successful..')),
+                            );
                       Get.to(SignInScreen(),
                           duration: const Duration(seconds: 1),transition: Transition.native);
                     }

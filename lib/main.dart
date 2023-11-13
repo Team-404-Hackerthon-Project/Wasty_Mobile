@@ -3,10 +3,8 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wasty/screens/auth/registration_screen.dart';
 import 'screens/auth/splash_screen.dart';
-
-
+import 'screens/landingPage.dart';
 
 
 void main() => runApp(
@@ -38,13 +36,7 @@ class MyApp extends StatelessWidget {
       ),
       home:  const Checkpoint(),
 
-      // routes: {
-      //   '/splash': (context) => SplashScreen(),
-      //   '/registration': (context) => RegistrationScreen(),
-      //   '/forgot': (context) => ForgotPasswordScreen(),
-      //   '/signin': (context) => SignInScreen(),
-      //   '/landing': (context) => DashBord(),
-      // },
+      
     );
   }
 }
@@ -63,6 +55,9 @@ class _CheckpointState extends State<Checkpoint> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var getEmail = prefs.getString('email');
+    print('========1========');
+    print(getEmail);
+    print('========1========');
 
     setState(() {
       finalEmail = getEmail;
@@ -73,19 +68,25 @@ class _CheckpointState extends State<Checkpoint> {
   void initState() {
     super.initState();
     isRegistered();
+    
   }
 
   @override
   Widget build(BuildContext context) {
+    
     return FutureBuilder<void>(
       future: isRegistered(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
+          print('========3========');
+    print(finalEmail);
+    print('========3========');
           return const Center(child: CircularProgressIndicator());
+          
         }
         return finalEmail == null
             ?  SplashScreen()
-            :  RegistrationScreen();
+            :  LandingPage();
       },
     );
   }

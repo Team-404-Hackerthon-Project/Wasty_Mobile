@@ -9,6 +9,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: bodyColor,
       body: SingleChildScrollView(
@@ -21,20 +22,19 @@ class SplashScreen extends StatelessWidget {
             const Center(
               child: Text(
                 'Wasty',
-                style: TextStyle(
-                  fontSize: 35,
-                ),
+                style: AppStyle.headerText,
               ),
             ),
+            SizedBox(height: size*0.01),
             const Center(
               child: Image(
                 image: AssetImage('assets/images/lady_next_to_phone.png'),
               ),
             ),
-            const SizedBox(
-              height: 20,
+             SizedBox(
+              height: size*0.05,
             ),
-            const Center(child: Text('Manage your waste effectively!')),
+            const Center(child: Text('Manage your waste effectively!',style: AppStyle.headerText2,)),
             const SizedBox(
               height: 20,
             ),
@@ -44,7 +44,7 @@ class SplashScreen extends StatelessWidget {
               child: Text(
                   maxLines: 4,
                   textAlign: TextAlign.center,
-                  'Wasty is a waste management application. Here you\'ll be able to connect with your nearest vendors based on your location'),
+                  'Wasty is a waste management application. Here you\'ll be able to connect with your nearest vendors based on your location',style: AppStyle.bodyText),
             )),
             const SizedBox(
               height: 30,

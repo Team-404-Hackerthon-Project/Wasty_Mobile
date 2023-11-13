@@ -8,7 +8,6 @@ import 'package:wasty/components/custom_text_button.dart';
 import 'package:wasty/components/footer_button.dart';
 import 'package:wasty/components/progress_indicator.dart';
 import 'package:wasty/constants.dart';
-import 'package:wasty/components/custom_button.dart';
 import 'package:wasty/components/custom_input_field.dart';
 import 'package:wasty/screens/auth/registration_screen.dart';
 import 'package:wasty/screens/landingPage.dart';
@@ -42,7 +41,6 @@ class SignInScreen extends StatelessWidget {
 
       // Handle the response
       if (response.statusCode == 200) {
-
         SharedPreferences prefs = await SharedPreferences.getInstance();
 
         //saving users accessToken
@@ -53,7 +51,7 @@ class SignInScreen extends StatelessWidget {
             duration: const Duration(seconds: 1),transition: Transition.native);
 
       } else {
-
+print('registration error');
 
       }
     } catch (error) {
@@ -82,12 +80,7 @@ class SignInScreen extends StatelessWidget {
               const Center(
                 child: Text(
                   'Welcome to Wasty again!',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF474A56),
-                  ),
+                  style: AppStyle.headerText,
                 ),
               ),
               SizedBox(height: size * 0.05),
@@ -153,28 +146,6 @@ class SignInScreen extends StatelessWidget {
             Center(
               child: FooterButton(question: 'Dont have an account?', buttonText: 'Sign Up', object: RegistrationScreen()),
             )
-
-
-                    ,
-
-              // SizedBox(height: size * 0.03),
-              // Center(
-              //   child: CustomInputField(
-              //       hintText: 'Email address',
-              //       textEditingController: email,
-              //       validator: (value){},
-              //       keyboardType: TextInputType.text),
-              // ),
-
-              //Center(child: CustomTextButton(buttonName: 'Forgot Password ?', widget: ForgotPasswordScreen(),)),
-              //SizedBox(height: size * 0.05),
-              //Center(child: CustomButton(buttonName:'Get Started', widget: RegistrationScreen(),)),
-              //SizedBox(height: size * 0.01),
-              // Center(
-              //   child: FooterButton(question: 'Dont have an account?', buttonText: 'Sign Up', object: RegistrationScreen()),
-              // ),
-              //SizedBox(height: size * 0.01),
-
             ],
           ),
         ),

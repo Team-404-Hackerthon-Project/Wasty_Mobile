@@ -23,15 +23,13 @@ class _DashBordState extends State<LandingPage> {
                 Image.asset(
                   'assets/images/boolaCar.png',
                   fit: BoxFit.cover,
-                  //width: 100,
-                  //height: 100,
+                  
                 ),
                 Positioned(
                   top: -15,
                   left: -10,
                   child: Image.asset(
                     'assets/images/shapes.png',
-                    //width: 100,
                     height: 100,
                   ),
                 ),
@@ -42,16 +40,10 @@ class _DashBordState extends State<LandingPage> {
                 SizedBox(height: size * 0.5),
                 const Text(
                   'Request for your waste \n to be taken',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w900,
-                    color: Color(0xFF000000),
-                  ),
+                  style: AppStyle.headerText,
                 ),
                 SizedBox(height: size * 0.25),
-                CustomButton(
+                const CustomButton(
                   buttonName: 'Request',
                   widget: RequestPage(),
                 ),
