@@ -39,6 +39,7 @@ class _DashBordState extends State<LandingPage> {
               children: [
                 SizedBox(height: size * 0.5),
                 const Text(
+                  textAlign: TextAlign.center,
                   'Request for your waste \n to be taken',
                   style: AppStyle.headerText,
                 ),
