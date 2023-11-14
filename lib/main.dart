@@ -55,9 +55,7 @@ class _CheckpointState extends State<Checkpoint> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var getEmail = prefs.getString('email');
-    print('========1========');
-    print(getEmail);
-    print('========1========');
+
 
     setState(() {
       finalEmail = getEmail;
@@ -78,9 +76,7 @@ class _CheckpointState extends State<Checkpoint> {
       future: isRegistered(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          print('========3========');
-    print(finalEmail);
-    print('========3========');
+
           return const Center(child: CircularProgressIndicator());
           
         }

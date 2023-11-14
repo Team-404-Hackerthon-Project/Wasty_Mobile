@@ -29,7 +29,7 @@ const Color emphasisTextColor = Color(0xFF00E0FF);
       fontSize: 15,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
-      color: textColor);
+      color: formFieldHintColor);
 
       // static const  bodyText = TextStyle(
       // fontSize: 15,

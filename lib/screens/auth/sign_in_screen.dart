@@ -1,3 +1,4 @@
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ import 'package:wasty/constants.dart';
 import 'package:wasty/components/custom_input_field.dart';
 import 'package:wasty/screens/auth/registration_screen.dart';
 import 'package:wasty/screens/landingPage.dart';
-import '../../components/verifyBTN.dart';
+import '../../components/BTN.dart';
 import 'forgot_password_screen.dart';
 import 'package:wasty/apis/wasty_api_client.dart';
 
@@ -53,6 +54,7 @@ class SignInScreen extends StatelessWidget {
       } else {
 print('registration error');
 
+
       }
     } catch (error) {
       print("Error: $error");
@@ -79,6 +81,7 @@ print('registration error');
 
               const Center(
                 child: Text(
+                  textAlign: TextAlign.center,
                   'Welcome to Wasty again!',
                   style: AppStyle.headerText,
                 ),
@@ -130,7 +133,7 @@ print('registration error');
 
             const SizedBox(height: 20,),
 
-              VerifyBTN(btn: 'Log in', onTap: () async {
+              MyBTN(btn: 'Log in', onTap: () async {
 
                 if (_formKey.currentState!.validate()){
                   progressIndicatorBuilder(context);

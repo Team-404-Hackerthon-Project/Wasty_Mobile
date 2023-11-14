@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../components/verifyBTN.dart';
+import '../components/BTN.dart';
 import '../constants.dart';
 import '../widgets/textfields_widgets.dart';
 import 'verify.dart';
@@ -298,7 +298,7 @@ class _RequestPageState extends State<RequestPage> {
                       ),
                     ),
 
-                    VerifyBTN(btn: 'Next', onTap: () {
+                    MyBTN(btn: 'Next', onTap: () {
 
                       if (_formKey.currentState!.validate()){
                         Get.to(const SubmitInformation(),

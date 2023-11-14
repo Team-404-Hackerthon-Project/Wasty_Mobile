@@ -5,7 +5,7 @@ import 'package:wasty/components/custom_input_field.dart';
 import 'package:wasty/components/footer_button.dart';
 import 'package:wasty/constants.dart';
 import 'package:wasty/apis/wasty_api_client.dart';
-import '../../components/verifyBTN.dart';
+import '../../components/BTN.dart';
 import 'sign_in_screen.dart';
 import 'package:wasty/components/progress_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -130,7 +130,7 @@ SizedBox(height: size * 0.05),              Center(
 SizedBox(height: size * 0.1),              Center(
                   child:
 
-                  VerifyBTN(btn: 'Register', onTap: () async{
+                  MyBTN(btn: 'Register', onTap: () async{
 
                     if (_formKey.currentState!.validate()){
                       SharedPreferences prefs = await SharedPreferences.getInstance();

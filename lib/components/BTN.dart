@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class VerifyBTN extends StatelessWidget {
+class MyBTN extends StatelessWidget {
   final String btn;
   final VoidCallback onTap;
 
-  VerifyBTN({super.key, required this.btn, required this.onTap,});
+  MyBTN({super.key, required this.btn, required this.onTap,});
 
   @override
   Widget build(BuildContext context) {

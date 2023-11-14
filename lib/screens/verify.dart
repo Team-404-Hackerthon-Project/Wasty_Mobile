@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wasty/components/progress_indicator.dart';
 
 
-import '../components/verifyBTN.dart';
+import '../components/BTN.dart';
 import '../constants.dart';
 import 'thanks.dart';
 
@@ -174,7 +174,7 @@ class SubmitInformation extends StatelessWidget {
                   SizedBox(
                     height: size * 0.05,
                   ),
-                  VerifyBTN(btn: 'Next', onTap: () async{
+                  MyBTN(btn: 'Next', onTap: () async{
                     //progressIndicatorBuilder(context);
                     performWasteRequest();
                     //Navigator.pop(context);
