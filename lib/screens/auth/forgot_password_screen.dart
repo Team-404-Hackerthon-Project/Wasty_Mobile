@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:wasty/components/custom_input_field.dart';
-import 'package:wasty/constants.dart';
-import 'package:wasty/components/custom_button.dart';
+import 'package:get/get.dart';
+
+import 'package:wasty/utils/constants.dart';
+import 'package:wasty/components/Buttons/custom_button.dart';
 import 'package:wasty/screens/auth/splash_screen.dart';
-import 'package:wasty/screens/auth/splash_screen.dart';
+
+import '../../components/Textfields/custom_input_field.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({super.key});
 
-  TextEditingController email = TextEditingController();
+  final TextEditingController email = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +19,13 @@ class ForgotPasswordScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image(
+          const Image(
             image: AssetImage(
                 'assets/images/overlapping_circles.png'
             ),
           ),
 
-          Center(
+          const Center(
             child: Text(
               'Set new password',
               style: TextStyle(
@@ -31,44 +33,52 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 40,),
+          const SizedBox(height: 40,),
           Center(
             child: CustomInputField(
                 hintText: 'Email address',
                 textEditingController: email,
-                validator: (value){},
+                validator: (value){
+                  return null;
+                },
                 keyboardType: TextInputType.text),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           Center(
             child: CustomInputField(
                 hintText: 'Email address',
                 textEditingController: email,
-                validator: (value){},
+                validator: (value){
+                  return null;
+                },
                 keyboardType: TextInputType.text),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           Center(
             child: CustomInputField(
                 hintText: 'Email address',
                 textEditingController: email,
-                validator: (value){},
+                validator: (value){
+                  return null;
+                },
                 keyboardType: TextInputType.text),
           ),
-          SizedBox(height: 20,),
-          Center(
+          const SizedBox(height: 20,),
+          const Center(
             child: Image(
               image: AssetImage(
                   'assets/images/password.png'
               ),
             ),
           ),
-          SizedBox(height: 40,),
+          const SizedBox(height: 40,),
 
           Center(
             child: CustomButton(
                 buttonName: 'Done',
-                widget: SplashScreen()
+                 onTap: () {
+                  Get.to(SplashScreen());
+            },
             ),
           )
         ],

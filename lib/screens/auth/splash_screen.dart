@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:wasty/constants.dart';
-import 'package:wasty/components/custom_button.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:wasty/utils/constants.dart';
+import 'package:wasty/components/Buttons/custom_button.dart';
 
 import 'sign_in_screen.dart';
 
@@ -52,7 +54,7 @@ class SplashScreen extends StatelessWidget {
             Center(
                 child: CustomButton(
               buttonName: 'Get Started',
-              widget: SignInScreen()
+               onTap: () {Get.to(const SignInScreen());  },
             )),
           ],
         ),

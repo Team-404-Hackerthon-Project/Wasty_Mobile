@@ -1,22 +1,39 @@
-import 'package:flutter/material.dart';
+
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wasty/screens/pages/landingPage.dart';
+import 'package:wasty/utils/constants.dart';
 import 'screens/auth/splash_screen.dart';
-import 'screens/landingPage.dart';
 
 
-void main() => runApp(
-  DevicePreview(
-    builder: (context) =>  MyApp(), // Wrap your app
-  ),
-  // MyApp()
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Constants.prefs = await SharedPreferences.getInstance();
+  runApp(DevicePreview(builder: (BuildContext context) { 
+    return OurApp();
+   },
+ ));
+}
 
-);
+class OurApp extends StatefulWidget {
+  OurApp({Key? key}) : super(key: key);
 
-class MyApp extends StatelessWidget {
-   MyApp({super.key});
+  @override
+  State<OurApp> createState() => _OurAppState();
+}
+
+class _OurAppState extends State<OurApp> {
+  late bool isAuthenticated;
+
+  @override
+  void initState() {
+    super.initState();
+    isAuthenticated = Constants.prefs?.getBool("loggedIn") ?? false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,65 +42,15 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+
     return GetMaterialApp(
-      //useInheritedMediaQuery: true,
       debugShowCheckedModeBanner: false,
       title: 'Wasty',
       theme: ThemeData(
-        
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00BD15)),
-        //useMaterial3: true,
       ),
-      home:  const Checkpoint(),
-
-      
-    );
-  }
-}
-
-class Checkpoint extends StatefulWidget {
-  const Checkpoint({super.key});
-
-  @override
-  State<Checkpoint> createState() => _CheckpointState();
-}
-
-class _CheckpointState extends State<Checkpoint> {
-  String? finalEmail;
-
-  Future<void> isRegistered() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    var getEmail = prefs.getString('email');
-
-
-    setState(() {
-      finalEmail = getEmail;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    isRegistered();
-    
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    
-    return FutureBuilder<void>(
-      future: isRegistered(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-
-          return const Center(child: CircularProgressIndicator());
-          
-        }
-        return finalEmail == null
-            ?  SplashScreen()
-            :  LandingPage();
-      },
+      home: isAuthenticated ? SplashScreen() : LandingPage(),
+      builder: EasyLoading.init(),
     );
   }
 }

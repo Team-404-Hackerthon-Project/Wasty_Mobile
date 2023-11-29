@@ -1,66 +1,31 @@
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wasty/components/custom_text_button.dart';
-import 'package:wasty/components/footer_button.dart';
-import 'package:wasty/components/progress_indicator.dart';
-import 'package:wasty/constants.dart';
-import 'package:wasty/components/custom_input_field.dart';
+
+import 'package:wasty/utils/constants.dart';
 import 'package:wasty/screens/auth/registration_screen.dart';
-import 'package:wasty/screens/landingPage.dart';
-import '../../components/BTN.dart';
+import '../../components/Buttons/BTN.dart';
+import '../../components/Buttons/custom_text_button.dart';
+import '../../components/Buttons/footer_button.dart';
+import '../../components/Textfields/custom_input_field.dart';
+import '../../post_functions/post_functions.dart';
 import 'forgot_password_screen.dart';
-import 'package:wasty/apis/wasty_api_client.dart';
 
 
-DioClient client = DioClient();
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
-class SignInScreen extends StatelessWidget {
-  SignInScreen({super.key});
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
+
   TextEditingController email = TextEditingController();
+
   TextEditingController password = TextEditingController();
-
-  void performLoginRequest() async {
-    final dio = Dio();
-
-    // Define the login endpoint and request data
-    const String loginEndpoint = "https://hackathon-waste-api.onrender.com/api/v1/auth/login";
-    final Map<String, dynamic> loginData = {
-      "email": email.text,
-      "password": password.text,
-      "appType": "app2",
-    };
-
-    try {
-      // Make a POST request to the login endpoint
-      final response = await dio.post(loginEndpoint, data: loginData);
-
-      // Handle the response
-      if (response.statusCode == 200) {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-
-        //saving users accessToken
-        prefs.setString('accessToken', response.data['accessToken']);
-
-        //returning users to the landing page
-        Get.to(LandingPage(),
-            duration: const Duration(seconds: 1),transition: Transition.native);
-
-      } else {
-print('registration error');
-
-
-      }
-    } catch (error) {
-      print("Error: $error");
-    }
-  }
-
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +39,8 @@ print('registration error');
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Image(
-                image: AssetImage(
-                    'assets/images/overlapping_circles.png'
-                ),
+                image: AssetImage('assets/images/overlapping_circles.png'),
               ),
-
               const Center(
                 child: Text(
                   textAlign: TextAlign.center,
@@ -87,73 +49,83 @@ print('registration error');
                 ),
               ),
               SizedBox(height: size * 0.05),
-
               const Center(
                 child: Image(
-                  image: AssetImage(
-                      'assets/images/man_next_to_phone.png'
-                  ),
+                  image: AssetImage('assets/images/man_next_to_phone.png'),
                 ),
               ),
               SizedBox(height: size * 0.1),
               Center(
-                child: CustomInputField(
-                    hintText: 'Email address',
-                    textEditingController: email,
-                    validator: (value){
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your email address';
-                      }
+                  child: CustomInputField(
+                hintText: 'Email address',
+                textEditingController: email,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email address';
+                  }
 
-                      return null;
-                    }, keyboardType: TextInputType.emailAddress,
-    )),
+                  return null;
+                },
+                keyboardType: TextInputType.emailAddress,
+                
+              )),
               SizedBox(height: size * 0.05),
-
-
-            Center(
-              child: CustomInputField(
-                obscureText: true,
-                  hintText: 'Password',
-                  textEditingController: password,
-                  validator: (value){
-                    if (value == null || value.isEmpty) {
-                      return 'Please provide a password';
-                    }
-                    return null;
+              Center(
+                child: CustomInputField(
+                    obscureText: true,
+                    hintText: 'Password',
+                    textEditingController: password,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please provide a password';
+                      }
+                      return null;
+                    },
+                    showVisibilityToggle: true,
+                    keyboardType: TextInputType.text),
+              ),
+              Center(
+                  child: CustomTextButton(
+                buttonName: 'Forgot Password ?', onTap: () {
+                  Get.to(ForgotPasswordScreen());
                   },
-                  keyboardType: TextInputType.text),
-            ),
+              )),
+              FooterButton(
+                  question: 'Dont have an account?',
+                  buttonText: 'Sign Up',
+                  onTap: () {Get.to(const RegistrationScreen());  },),
+              const SizedBox(
+                height: 20,
+              ),
+              MyBTN(
+                  btn: 'Log in',
+                  onTap: () async {
+                    if (_formKey.currentState!.validate()) {
 
-            Center(
-                child: CustomTextButton(
-                  buttonName: 'Forgot Password ?',
-                  widget: ForgotPasswordScreen(),
-                )),
+                      // Start ProgressIndicator
+                      setState(() {
+                        isLoading = true;
+                      });
 
-            const SizedBox(height: 20,),
+                      // Creating user registration mapData
+                      final Map<String, dynamic> userLoginData = {
+                        "email": email.text,
+                        "password": password.text,
+                        "appType": 'app2',
+                      };
+                      // Gather and send data to Register post function
+                      await AuthPostRequest.loginUser(userLoginData);
 
-              MyBTN(btn: 'Log in', onTap: () async {
-
-                if (_formKey.currentState!.validate()){
-                  progressIndicatorBuilder(context);
-                  performLoginRequest();
-                  final SharedPreferences prefs = await SharedPreferences.getInstance();
-                  //final result = await client.postLogIn(email.text,password.text);
-                  //prefs.setString('accesstoken', result);
-                  Navigator.pop(context);
-                  Get.to(LandingPage(),
-                      duration: const Duration(seconds: 1),transition: Transition.native);
-                }
-                },),
-            Center(
-              child: FooterButton(question: 'Dont have an account?', buttonText: 'Sign Up', object: RegistrationScreen()),
-            )
+                      // STOP ProgressIndicator
+                      setState(() {
+                        isLoading = false;
+                      });
+                    }
+                  })
             ],
           ),
         ),
-      ) ,
-
+      ),
     );
   }
 }
